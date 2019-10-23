@@ -5,6 +5,8 @@ namespace AppBundle\Entity;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity
@@ -29,18 +31,34 @@ class User extends BaseUser
     protected $group;
 
     /**
-     * @var string
+     * @ORM\Column(type="string", length=255, name="first_name")
      *
-     * @ORM\Column(name="first_name", type="string", length=255, nullable=true)
+     * @Assert\NotBlank(message="Please enter your first name.", groups={"Registration", "Profile"})
+     * @Assert\Length(
+     *     min=3,
+     *     max=50,
+     *     minMessage="The first name is too short.",
+     *     maxMessage="The first name is too long.",
+     *     groups={"Registration", "Profile"}
+     * )
      */
-    private $first_name;
+    protected $firstName;
+
 
     /**
-     * @var string
+     * @ORM\Column(type="string", length=255, name="last_name")
      *
-     * @ORM\Column(name="last_name", type="string", length=255, nullable=true)
+     * @Assert\NotBlank(message="Please enter your last name.", groups={"Registration", "Profile"})
+     * @Assert\Length(
+     *     min=3,
+     *     max=50,
+     *     minMessage="The last name is too short.",
+     *     maxMessage="The last name is too long.",
+     *     groups={"Registration", "Profile"}
+     * )
      */
-    private $last_name;
+    protected $LastName;
+
 
     public function __construct()
     {
@@ -65,36 +83,41 @@ class User extends BaseUser
     }
 
     /**
-     * @return string
-     */
-    public function getFirstName()
-    {
-        return $this->first_name;
-    }
-
-    /**
-     * @param string $first_name
-     */
-    public function setFirstName($first_name)
-    {
-        $this->first_name = $first_name;
-    }
-
-    /**
-     * @return string
+     * @return mixed
      */
     public function getLastName()
     {
-        return $this->last_name;
+        return $this->LastName;
     }
 
     /**
-     * @param string $last_name
+     * @param mixed $LastName
+     * @return User
      */
-    public function setLastName($last_name)
+    public function setLastName($LastName)
     {
-        $this->last_name = $last_name;
+        $this->LastName = $LastName;
+        return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * @param mixed $firstName
+     * @return User
+     */
+    public function setFirstName($firstName)
+    {
+        $this->firstName = $firstName;
+        return $this;
+    }
+
 
 
 }

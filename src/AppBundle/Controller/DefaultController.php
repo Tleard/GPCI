@@ -20,8 +20,7 @@ class DefaultController extends Controller
         if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException('This user does not have access to this section.');
         }
-
-        return $this->render('AppBundle::index.html.twig', array(
+        return $this->render('templates/index.html.twig', array(
             'user' => $user,
         ));
     }
