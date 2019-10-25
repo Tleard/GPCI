@@ -1,6 +1,9 @@
 <?php
 
 namespace AppBundle\Repository;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Symfony\Bridge\Doctrine\RegistryInterface;
+use App\Entity\Calendar;
 
 /**
  * CalendarRepository
@@ -10,4 +13,12 @@ namespace AppBundle\Repository;
  */
 class CalendarRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * CalendarRepository constructor.
+     * @param RegistryInterface $registry
+     */
+    public function __construct(RegistryInterface $registry)
+    {
+        parent::__construct($registry, Calendar::class);
+    }
 }
