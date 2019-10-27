@@ -23,7 +23,7 @@ class User extends BaseUser
 
     /**
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Group")
-     * @ORM\JoinTable(name="user_group",
+     * @ORM\JoinTable(name="group_link",
      *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
      * )
