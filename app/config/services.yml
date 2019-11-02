@@ -12,6 +12,8 @@ services:
     _defaults:
         # automatically injects dependencies in your services
         autowire: true
+        bind:
+            $isDebug: true
         # automatically registers your services as commands, event subscribers, etc.
         autoconfigure: true
         # this means you cannot fetch services directly from the container via $container->get()
@@ -37,3 +39,11 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+    AppBundle\EventSubscriber\CalendarSubscriber:
+        tags:
+            - { name: 'kernel.event_listener', event: 'calendar.set_data', method: load }
+
+    AppBundle\Repository\BookingRepository:
+        tags:
+            - "BookingRepository"
+

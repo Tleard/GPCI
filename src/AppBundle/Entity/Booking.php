@@ -7,9 +7,9 @@ use DateTimeInterface;
 
 /**
  * @ORM\Table(name="calendar")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\CalendarRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\BookingRepository")
  */
-class Calendar
+class Booking
 {
     /**
      * @ORM\Column(type="integer")

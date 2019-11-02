@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6d86b99aa6025a3d69ba784106117514",
+    "content-hash": "37e3e79a8d50c9a4db0515e30a173c14",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -1665,6 +1665,55 @@
             "time": "2018-07-31T09:26:32+00:00"
         },
         {
+            "name": "symfony/flex",
+            "version": "v1.4.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/flex.git",
+                "reference": "133e649fdf08aeb8741be1ba955ccbe5cd17c696"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/flex/zipball/133e649fdf08aeb8741be1ba955ccbe5cd17c696",
+                "reference": "133e649fdf08aeb8741be1ba955ccbe5cd17c696",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0",
+                "php": "^7.0"
+            },
+            "require-dev": {
+                "composer/composer": "^1.0.2",
+                "symfony/dotenv": "^3.4|^4.0",
+                "symfony/phpunit-bridge": "^3.4.19|^4.1.8",
+                "symfony/process": "^2.7|^3.0|^4.0"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.4-dev"
+                },
+                "class": "Symfony\\Flex\\Flex"
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Flex\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien.potencier@gmail.com"
+                }
+            ],
+            "description": "Composer plugin for Symfony",
+            "time": "2019-09-19T14:55:57+00:00"
+        },
+        {
             "name": "symfony/monolog-bundle",
             "version": "v3.4.0",
             "source": {
@@ -2340,30 +2389,40 @@
             "time": "2019-10-07T14:42:16+00:00"
         },
         {
-            "name": "toiba/fullcalendar-bundle",
-            "version": "v6.2.4",
+            "name": "tattali/calendar-bundle",
+            "version": "v1.1.6",
             "source": {
                 "type": "git",
-                "url": "https://github.com/toiba/FullCalendarBundle.git",
-                "reference": "d8b22cc3a159819fa2a4bbd1c7aad026c6bbad74"
+                "url": "https://github.com/tattali/CalendarBundle.git",
+                "reference": "a4378ad9d90e9e562c891729a8e2d70e81b0caaa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/toiba/FullCalendarBundle/zipball/d8b22cc3a159819fa2a4bbd1c7aad026c6bbad74",
-                "reference": "d8b22cc3a159819fa2a4bbd1c7aad026c6bbad74",
+                "url": "https://api.github.com/repos/tattali/CalendarBundle/zipball/a4378ad9d90e9e562c891729a8e2d70e81b0caaa",
+                "reference": "a4378ad9d90e9e562c891729a8e2d70e81b0caaa",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.5|^7.0",
-                "symfony/framework-bundle": "^3.4|^4.0"
+                "php": ">=7.1",
+                "symfony/dependency-injection": "^3.4 || ^4.0",
+                "symfony/event-dispatcher": "^3.4 || ^4.0",
+                "symfony/framework-bundle": "^3.4 || ^4.0"
             },
             "require-dev": {
-                "phpspec/phpspec": "^2.5"
+                "phpspec/prophecy": "^1.8",
+                "phpunit/phpunit": "^7.5",
+                "symfony/dotenv": "^4.2",
+                "symfony/phpunit-bridge": "^4.2",
+                "symfony/yaml": "^4.2"
+            },
+            "suggest": {
+                "doctrine/mongodb-odm-bundle": "To support MongoDB.",
+                "symfony/orm-pack": "To support Doctrine ORM and Migration."
             },
             "type": "symfony-bundle",
             "autoload": {
                 "psr-4": {
-                    "Toiba\\FullCalendarBundle\\": ""
+                    "CalendarBundle\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2372,26 +2431,20 @@
             ],
             "authors": [
                 {
-                    "name": "Rebeca Mora Anca",
-                    "role": "Developer",
-                    "email": "anca.rebeca@gmail.com"
-                },
-                {
                     "name": "Théo Attali",
-                    "role": "Developer",
-                    "email": "theoattali@gmail.com"
+                    "email": "theoattali@gmail.com",
+                    "homepage": "https://theoattali.fr"
                 }
             ],
-            "description": "Symfony integration of FullCalendar.js library. Events can be stored with Doctrine, MongoDB, CouchDB and others",
-            "homepage": "https://github.com/toiba/FullCalendarBundle",
+            "description": "Provides event calendar for your Symfony 4 project. Compatible with Doctrine ORM & ODM, and API like Google Calendar.",
+            "homepage": "https://github.com/tattali/CalendarBundle",
             "keywords": [
                 "calendar",
                 "fullcalendar",
-                "jquery calendar",
+                "symfony",
                 "symfony calendar"
             ],
-            "abandoned": "tattali/CalendarBundle",
-            "time": "2018-08-09T18:06:32+00:00"
+            "time": "2019-10-20T22:33:11+00:00"
         },
         {
             "name": "twig/twig",
@@ -2591,6 +2644,6 @@
     },
     "platform-dev": [],
     "platform-overrides": {
-        "php": "5.6"
+        "php": "7.2"
     }
 }
