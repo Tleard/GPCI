@@ -3,9 +3,11 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Booking;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Form;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Booking controller.
@@ -15,35 +17,27 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 class BookingController extends Controller
 {
     /**
-     * Lists all booking entities.
-     *
-     * @Route("/", name="booking_index")
-     * @Method("GET")
+     * @Route("/calendar", name="booking_calendar", methods={"GET"})
      */
-    public function indexAction()
+    public function calendar()
     {
         $em = $this->getDoctrine()->getManager();
 
         $bookings = $em->getRepository('AppBundle:Booking')->findAll();
 
-        return $this->render('booking/index.html.twig', array(
+        return $this->render('booking/calendar.html.twig', array(
             'bookings' => $bookings,
         ));
     }
 
     /**
-     * @Route("/calendar", name="booking_calendar", methods={"GET"})
-     */
-    public function calendar()
-    {
-        return $this->render('booking/calendar.html.twig');
-    }
-
-    /**
      * Creates a new booking entity.
      *
-     * @Route("/new", name="booking_new")
-     * @Method({"GET", "POST"})
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     *
+     * @Route("/new", name="booking_new", methods={"GET", "POST"})
+     *
      */
     public function newAction(Request $request)
     {
@@ -68,8 +62,10 @@ class BookingController extends Controller
     /**
      * Finds and displays a booking entity.
      *
-     * @Route("/{id}", name="booking_show")
-     * @Method("GET")
+     * @param Booking $booking
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @Route("/{id}", name="booking_show" , methods={"GET"})
      */
     public function showAction(Booking $booking)
     {
@@ -84,8 +80,11 @@ class BookingController extends Controller
     /**
      * Displays a form to edit an existing booking entity.
      *
-     * @Route("/{id}/edit", name="booking_edit")
-     * @Method({"GET", "POST"})
+     * @param Request $request
+     * @param Booking $booking
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     *
+     * @Route("/{id}/edit", name="booking_edit", methods={"GET", "POST"})
      */
     public function editAction(Request $request, Booking $booking)
     {
@@ -109,8 +108,11 @@ class BookingController extends Controller
     /**
      * Deletes a booking entity.
      *
-     * @Route("/{id}", name="booking_delete")
-     * @Method("DELETE")
+     * @param Request $request
+     * @param Booking $booking
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     *
+     * @Route("/{id}", name="booking_delete", methods={"DELETE"})
      */
     public function deleteAction(Request $request, Booking $booking)
     {
@@ -131,7 +133,7 @@ class BookingController extends Controller
      *
      * @param Booking $booking The booking entity
      *
-     * @return \Symfony\Component\Form\Form The form
+     * @return \Symfony\Component\Form\FormInterface
      */
     private function createDeleteForm(Booking $booking)
     {
