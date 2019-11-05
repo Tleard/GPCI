@@ -44,27 +44,21 @@
         <ul class="list-unstyled components">
             {#Todo: Add class Active#}
             <li>
-                <a href="#"><i class="fas fa-home"></i>  Planning</a>
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-calendar-alt"></i> Planning</a>
+                <ul class="collapse list-unstyled" id="pageSubmenu">
+                    <li>
+                        <a href="{{ path('booking_calendar') }}"><i class="fa fa-calendar"></i> Voir le calendrier</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('booking_new') }}"><i class="fa fa-calendar-plus"></i> Créer un évenement</a>
+                    </li>
+                </ul>
             </li>
             <li>
                 <a href="#"><i class="fas fa-unlock"></i>  Admin</a>
             </li>
             <li>
                 <a href="#"><i class="fas fa-user"></i>  User</a>
-            </li>
-            <li>
-                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
-                <ul class="collapse list-unstyled" id="pageSubmenu">
-                    <li>
-                        <a href="#">Page 1</a>
-                    </li>
-                    <li>
-                        <a href="#">Page 2</a>
-                    </li>
-                    <li>
-                        <a href="#">Page 3</a>
-                    </li>
-                </ul>
             </li>
         </ul>
 
@@ -226,34 +220,11 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
 <script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', () => {
-        var calendarEl = document.getElementById('calendar-holder');
-
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            defaultView: 'dayGridMonth',
-            editable: true,
-            eventSources: [
-                {
-                    url: "/fc-load-events",
-                    method: "POST",
-                    extraParams: {
-                        filters: JSON.stringify({})
-                    },
-                    failure: () => {
-                        // alert("There was an error while fetching FullCalendar!");
-                    },
-                },
-            ],
-            header: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'dayGridMonth,timeGridWeek,timeGridDay',
-            },
-            plugins: [ 'interaction', 'dayGrid', 'timeGrid' ], // https://fullcalendar.io/docs/plugin-index
-            timeZone: 'UTC',
-        });
-        calendar.render();
+$(document).ready(function () {
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar').toggleClass('active');
     });
+});
 </script>
 </body>
 

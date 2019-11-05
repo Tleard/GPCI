@@ -17,6 +17,22 @@ use Symfony\Component\Routing\Annotation\Route;
 class BookingController extends Controller
 {
     /**
+     * Lists all booking entities.
+     *
+     * @Route("/", name="booking_index", methods={"GET"})
+     */
+    public function indexAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $bookings = $em->getRepository('AppBundle:Booking')->findAll();
+
+        return $this->render('booking/index.html.twig', array(
+            'bookings' => $bookings,
+        ));
+    }
+
+    /**
      * @Route("/calendar", name="booking_calendar", methods={"GET"})
      */
     public function calendar()
