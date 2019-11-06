@@ -27,12 +27,12 @@
                 eventSources: [
                     {
                         url: "{{ path('fc_load_events') }}",
-                        method: "POST",
+                        method: "GET",
                         extraParams: {
                             filters: JSON.stringify({})
                         },
                         failure: () => {
-                            // alert("There was an error while fetching FullCalendar!");
+                            //alert("There was an error while fetching FullCalendar");
                         },
                     },
                 ],

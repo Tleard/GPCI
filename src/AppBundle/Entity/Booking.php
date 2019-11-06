@@ -19,19 +19,25 @@ class Booking
     private $id;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", name="begin_at")
      */
     private $beginAt;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime", nullable=true, name="end_at")
      */
     private $endAt = null;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, name="title")
      */
     private $title;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Classe")
+     * @ORM\JoinColumn(nullable=true, name="class")
+     */
+    private $class;
 
     public function getId()
     {
@@ -73,4 +79,22 @@ class Booking
 
         return $this;
     }
+
+    /**
+     * @return Classe
+     */
+    public function getClass()
+    {
+        return $this->class;
+    }
+
+    /**
+     * @param Classe $class
+     */
+    public function setClass($class)
+    {
+        $this->class = $class;
+    }
+
+
 }
