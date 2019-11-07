@@ -85,7 +85,7 @@ class GroupController extends Controller
             return $this->redirectToRoute('admin_index');
         }
 
-        return $this->render('admin/new.html.twig', array(
+        return $this->render('admin/new_group.html.twig', array(
             'form' => $form->createView(),
             'group' => $group
         ));
