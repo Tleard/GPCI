@@ -16,9 +16,11 @@
         <!-- Our Custom CSS -->
         <link rel="stylesheet" href="{{asset('css/component.css')}}">
         {% block stylesheets %}
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.1.0/main.min.css">
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.1.0/main.min.css">
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@4.1.0/main.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.1.0/main.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.1.0/main.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@4.1.0/main.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
         {% endblock %}
 
         {% block javascripts %}
@@ -26,6 +28,10 @@
             <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@4.1.0/main.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.1.0/main.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@4.1.0/main.min.js"></script>
+            <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+            <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css"></script>
+            <script src="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"></script>
         {% endblock %}
 
         <!-- Font Awesome JS -->
@@ -99,7 +105,7 @@
                         <br>
                         <h2>Liste des Utilisateurs</h2>
                         <br>
-                        <table class="table table-hover">
+                        <table id="table" class="table table-hover">
                             <thead>
                             <tr>
                                 <th scope="col">Pseudo</th>
@@ -137,7 +143,7 @@
                         <br>
                         <h2>Liste des groupes</h2>
                         <br>
-                        <table class="table table-hover">
+                        <table id="table" class="table table-striped table-bordered">
                             <thead>
                             <tr>
                                 <th scope="col">Nom du groupe</th>
@@ -163,9 +169,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <!-- Datatable JS CDN-->
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
 
     <script type="text/javascript">
-        $(document).ready(function () {
+        /*$(document).ready(function () {
             $('#sidebarCollapse').on('click', function () {
                 $('#sidebar').toggleClass('active');
             });
@@ -174,7 +182,10 @@
             $(".clickable-row").click(function() {
                 window.location = $(this).data("href");
             });
-        });
+        });*/
+        $(document).ready(function () {
+            $('#table').DataTable();
+        } );
     </script>
     </body>
 </html>

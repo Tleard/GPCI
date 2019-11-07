@@ -28,7 +28,7 @@ class AdminController extends Controller
     {
         $roles = $this->getUser()->getRoles();
 
-        if (in_array("ROLE_ADMIN", $roles)) {
+        if (!in_array("ROLE_ADMIN", $roles)) {
             /*Todo: Translation*/
              $this->addFlash("This user is does not have the right to acces this page.");
              return $this->redirectToRoute($this->indexAction());
@@ -54,7 +54,7 @@ class AdminController extends Controller
     {
         $roles = $this->getUser()->getRoles();
 
-        if (in_array("ROLE_ADMIN", $roles)) {
+        if (!in_array("ROLE_ADMIN", $roles)) {
             /*Todo: Translation*/
             $this->addFlash("This user is does not have the right to acces this page.");
             return $this->redirectToRoute($this->indexAction());
@@ -90,7 +90,7 @@ class AdminController extends Controller
     {
         $roles = $this->getUser()->getRoles();
 
-        if (in_array("ROLE_ADMIN", $roles)) {
+        if (!in_array("ROLE_ADMIN", $roles)) {
             /*Todo: Translation*/
             $this->addFlash("This user is does not have the right to acces this page.");
             return $this->redirectToRoute($this->indexAction());
@@ -126,7 +126,7 @@ class AdminController extends Controller
     {
         $roles = $this->getUser()->getRoles();
 
-        if (in_array("ROLE_ADMIN", $roles)) {
+        if (!in_array("ROLE_ADMIN", $roles)) {
             /*Todo: Translation*/
             $this->addFlash("This user is does not have the right to acces this page.");
             return $this->redirectToRoute($this->indexAction());
