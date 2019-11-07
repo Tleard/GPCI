@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\User;
 use AppBundle\Form\UserType;
 use AppBundle\Manager\AdminManager;
+use AppBundle\Manager\GroupManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,12 +24,14 @@ class AdminController extends Controller
      *
      * @Route("/", name="admin_index", methods={"GET"})
      */
-    public function indexAction(AdminManager $adminManager)
+    public function indexAction(AdminManager $adminManager, GroupManager$groupManager)
     {
         $users = $adminManager->findAll();
+        $groups = $groupManager->findAll();
 
         return $this->render(':admin:index.html.twig', array(
-            'users' => $users
+            'users' => $users,
+            'groups' => $groups
         ));
     }
 
@@ -53,7 +56,7 @@ class AdminController extends Controller
             return $this->redirectToRoute('admin_index');
         }
 
-        return $this->render('admin/new.html.twig', array(
+        return $this->render('admin/new_user.html.twig', array(
             'form' => $form->createView(),
             'user' => $user
         ));
@@ -82,7 +85,7 @@ class AdminController extends Controller
             return $this->redirectToRoute('admin_index');
         }
 
-        return $this->render('admin/new.html.twig', array(
+        return $this->render('admin/new_user.html.twig', array(
             'form' => $form->createView(),
             'user' => $user
         ));

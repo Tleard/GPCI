@@ -43,7 +43,8 @@ class GroupController extends Controller
      */
     public function newAction(Request $request, GroupManager $groupManager): Response
     {
-        $group = new Group();
+        $name = "";
+        $group = new Group($name);
         $form = $this->createForm(GroupType::class, $group, array(
             'action' => $this->generateUrl('group_create')
         ));
@@ -52,10 +53,10 @@ class GroupController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $groupManager->createOrUpdate($group);
             $this->addFlash('success', "Le groupe ''" . $group->getName() . "'' à bien été crée.");
-            return $this->redirectToRoute('group_index');
+            return $this->redirectToRoute('admin_index');
         }
 
-        return $this->render('admin/new.html.twig', array(
+        return $this->render('admin/new_group.html.twig', array(
             'form' => $form->createView(),
             'group' => $group
         ));
