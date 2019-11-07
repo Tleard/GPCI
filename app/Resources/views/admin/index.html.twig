@@ -144,8 +144,8 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
                             {% for group in groups %}
+                                <tr class="clickable-row" data-href="{{ path('group_edit', {'group': group.id}) }}">
                                 <td scope="row">{{ group.name }}</td></tr>
                             {% endfor %}
                             </tbody>
