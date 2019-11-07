@@ -47,3 +47,11 @@ services:
         tags:
             - "BookingRepository"
 
+    AppBundle\Repository\AdminRepository:
+        tags:
+            - "AdminRepository"
+
+    AppBundle\Repository\GroupRepository:
+        tags:
+            - "GroupRepository"
+

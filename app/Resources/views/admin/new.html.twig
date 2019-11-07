@@ -32,7 +32,6 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 </head>
-
 <body>
 <div class="wrapper">
     <!-- Sidebar  -->
@@ -73,115 +72,69 @@
             </li>
         </ul>
     </nav>
-
     <!-- Page Content  -->
     <div id="content">
         <button type="button" id="sidebarCollapse" class="btn btn-info mb-4">
             <i class="fas fa-align-left"></i>
             <span>Toggle Sidebar</span>
         </button>
-
-        <div class="row">
-            {# --- CARD PRESENTATION --- #}
-            <div class="col-sm-12">
-                <div class="card shadow mb-4">
-                    <!-- Card Body -->
-                    <div class="card-body">
-                        <div class="col-8">
-                            <p class="mb-0">Insérer un message bienvenue</p>
-                        </div>
-                        <div class="col-4">
-
-                        </div>
-
-
-                        <div class="mt-4 text-center small">
-                            Footer
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <div class="row">
-
-            {# --- CARD PROFIL --- #}
-            <div class="col-lg-6 col-sm-12">
-                <div class="card shadow mb-4">
-
-                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-user"></i> Profil : {{ user.username }}</h6>
-                        <div class="dropdown no-arrow">
-                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                            </a>
-                            {# ----  Dropdown Maybe useless ---- #}
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                                <div class="dropdown-header">Dropdown Header:</div>
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Card Body -->
-                    <div class="card-body">
-                        <div class="col-8">
-                            <p>Nom : {{ user.lastName }}</p>
-                            <p>Prénom :  {{ user.firstName }} </p>
-                            <p>Rôles : {{ user.roles[0] }}</p>
-                            <p>Droit : </p>
-                        </div>
-                        <div class="col-4">
-
-                        </div>
-
-
-                        <div class="mt-4 text-center small">
-                            Footer
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {# --- CARD GROUP --- #}
-            <div class="col-lg-6 col-sm-12">
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-user"></i> Groups {#Todo:Add trannslation#}</h6>
-                        <div class="dropdown no-arrow">
-                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                            </a>
-                            {# ----  Dropdown Maybe useless ---- #}
-                        </div>
-                    </div>
-                    <!-- Card Body -->
-                    <div class="card-body">
-                        <div class="col-8">
-                            {#Todo: Parse Group For each group Card ? #}
-                        </div>
-                        <div class="col-4">
-
-                        </div>
-
-
-                        <div class="mt-4 text-center small">
-                            Footer
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="row">
             <div class="col-12">
                 {% block body %}
-                    {% include '@Calendar/calendar.html' %}
+                    {% if user.id != null %}
+                        <h1>Édition d'utilisateur</h1>
+                    {% else %}
+                        <h1>Création d'utilisateur</h1>
+                    {% endif %}
+                    {{ form_start(form) }}
+                    <div class="row">
+                        <div class="col-12 col-md-4">
+                            {{ form_row(form.username) }}
+                        </div>
+                        <div class="col-12 col-md-4">
+                            {{ form_row(form.firstName) }}
+                        </div>
+                        <div class="col-12 col-md-4">
+                            {{ form_row(form.lastName) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-4">
+                            {{ form_row(form.email) }}
+                        </div>
+                        <div class="col-12 col-4">
+                            {{ form_row(form.password) }}
+                        </div>
+                    </div>
+                    <div class="col-12 col-4">
+                        <div class="col-12 col-4">
+                            {{ form_row(form.group) }}
+                        </div>
+                        <div class="col-12 col-4">
+                            {{ form_row(form.roles) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div>
+                            {{ form_row(form.submit) }}
+                        </div>
+                        {% if user.id != null %}
+                        <div>
+                            <a type="button" id="sidebarCollapse" href="{{ path('admin_delete', {'user': user.id}) }}" class="btn btn-info mb-4">
+                                <span>Supprimer</span>
+                            </a>
+                        </div>
+                        {% endif %}
+                    </div>
+                    {{ form_end(form) }}
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_index') }}">Retour à la liste des utilisateurs</a>
+                        </li>
+                    </ul>
                 {% endblock %}
             </div>
         </div>
-
     </div>
 </div>
 
@@ -194,12 +147,11 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
 <script type="text/javascript">
-$(document).ready(function () {
-    $('#sidebarCollapse').on('click', function () {
-        $('#sidebar').toggleClass('active');
+    $(document).ready(function () {
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('active');
+        });
     });
-});
 </script>
 </body>
-
 </html>
