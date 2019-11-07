@@ -26,6 +26,14 @@ class AdminController extends Controller
      */
     public function indexAction(AdminManager $adminManager, GroupManager$groupManager)
     {
+        $roles = $this->getUser()->getRoles();
+
+        if (in_array("ROLE_ADMIN", $roles)) {
+            /*Todo: Translation*/
+             $this->addFlash("This user is does not have the right to acces this page.");
+             return $this->redirectToRoute($this->indexAction());
+        }
+
         $users = $adminManager->findAll();
         $groups = $groupManager->findAll();
 
@@ -44,6 +52,14 @@ class AdminController extends Controller
      */
     public function newAction(Request $request, AdminManager $adminManager): Response
     {
+        $roles = $this->getUser()->getRoles();
+
+        if (in_array("ROLE_ADMIN", $roles)) {
+            /*Todo: Translation*/
+            $this->addFlash("This user is does not have the right to acces this page.");
+            return $this->redirectToRoute($this->indexAction());
+        }
+
         $user = new User();
         $form = $this->createForm(UserType::class, $user, array(
             'action' => $this->generateUrl('admin_create')
@@ -72,6 +88,14 @@ class AdminController extends Controller
      */
     public function editAction(Request $request, User $user, AdminManager $adminManager): Response
     {
+        $roles = $this->getUser()->getRoles();
+
+        if (in_array("ROLE_ADMIN", $roles)) {
+            /*Todo: Translation*/
+            $this->addFlash("This user is does not have the right to acces this page.");
+            return $this->redirectToRoute($this->indexAction());
+        }
+
         $form = $this->createForm(UserType::class, $user, array(
             'action' => $this->generateUrl('admin_edit', array(
                 'user' => $user->getId()
@@ -100,6 +124,14 @@ class AdminController extends Controller
      */
     public function deleteAction(User $user, AdminManager $adminManager): Response
     {
+        $roles = $this->getUser()->getRoles();
+
+        if (in_array("ROLE_ADMIN", $roles)) {
+            /*Todo: Translation*/
+            $this->addFlash("This user is does not have the right to acces this page.");
+            return $this->redirectToRoute($this->indexAction());
+        }
+
         $adminManager->delete($user);
         $this->addFlash('success', "L'utilisateur ''" . $user->getFirstName() . " " . $user->getLastName() . "'' à bien été supprimé.");
         return $this->redirectToRoute('admin_index');
