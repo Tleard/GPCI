@@ -19,9 +19,12 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.1.0/main.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.1.0/main.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@4.1.0/main.min.css">
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
+
     {% endblock %}
 
     {% block javascripts %}
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.1.0/main.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@4.1.0/main.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.1.0/main.min.js"></script>
@@ -80,53 +83,64 @@
         </button>
         <div class="row">
             <div class="col-12">
-                {% block body %}
-                    {% if user.id != null %}
-                        <h1>Édition d'utilisateur</h1>
-                    {% else %}
-                        <h1>Création d'utilisateur</h1>
-                    {% endif %}
-                    {{ form_start(form) }}
-                    <div class="row">
-                        <div class="col-12 col-md-4">
-                            {{ form_row(form.username) }}
-                        </div>
-                        <div class="col-12 col-md-4">
-                            {{ form_row(form.firstName) }}
-                        </div>
-                        <div class="col-12 col-md-4">
-                            {{ form_row(form.lastName) }}
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12 col-4">
-                            {{ form_row(form.email) }}
-                        </div>
-                        <div class="col-12 col-4">
-                            {{ form_row(form.password) }}
-                        </div>
-                    </div>
-                    <div class="col-12 col-4">
-                        <div class="col-12 col-4">
-                            {{ form_row(form.group) }}
-                        </div>
-                        <div class="col-12 col-4">
-                            {{ form_row(form.roles) }}
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div>
-                            {{ form_row(form.submit) }}
-                        </div>
+                <div class="card">
+                    <div class="card-header">
+                        {% block body %}
                         {% if user.id != null %}
-                        <div>
-                            <a type="button" id="sidebarCollapse" href="{{ path('admin_delete', {'user': user.id}) }}" class="btn btn-info mb-4">
-                                <span>Supprimer</span>
-                            </a>
+                            <h2><i class="fa fa-edit"></i>Édition d'utilisateur</h2>
+                        {% else %}
+                            <h2><i class="fa fa-edit"></i>Création d'utilisateur</h2>
+                        {% endif %}
+                    </div>
+                    <div class="card-body">
+                        {{ form_start(form) }}
+                        <div class="form-row">
+                            <div class="col-md-4">
+                                <div class="input-group-desc">
+                                    <div class="input-group-desc">
+                                        {{ form_widget(form.firstName, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                    <label class="label--desc">{{ form_label(form.firstName) }}</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="input-group-desc">
+                                    <div class="input-group-desc">
+                                        {{ form_widget(form.lastName, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                    <label class="label--desc">{{ form_label(form.lastName) }}</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="input-group-desc">
+                                    <div class="input-group-desc">
+                                        {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                    <label class="label--desc">{{ form_label(form.email) }}</label>
+                                </div>
+                            </div>
                         </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="input-group-desc">
+                                    <div class="input-group-desc">
+                                        {{ form_widget(form.group, {'attr': {'class': 'select'}}) }}
+                                    </div>
+                                    <label class="label--desc">{{ form_label(form.group) }}</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        {% if user.id != null %}
+                            <div>
+                                <a type="button" id="sidebarCollapse" href="{{ path('admin_delete', {'user': user.id}) }}" class="btn btn-info mb-4">
+                                    <span>Supprimer</span>
+                                </a>
+                            </div>
                         {% endif %}
                     </div>
                     {{ form_end(form) }}
+                    </div>
                     <ul>
                         <li>
                             <a href="{{ path('admin_index') }}">Retour à la liste des utilisateurs</a>
@@ -147,10 +161,8 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
 <script type="text/javascript">
-    $(document).ready(function () {
-        $('#sidebarCollapse').on('click', function () {
-            $('#sidebar').toggleClass('active');
-        });
+    $(document).ready(function() {
+        $('.select').select2();
     });
 </script>
 </body>

@@ -114,11 +114,12 @@
                                 <th scope="col">E-mail</th>
                                 <th scope="col">Groupe</th>
                                 <th scope="col">Rôles</th>
+                                <th scope="col">Edition</th>
                             </tr>
                             </thead>
                             <tbody>
                             {% for user in users %}
-                                <tr class="clickable-row" data-href="{{ path('admin_edit', {'user': user.id}) }}">
+                                <tr class="clickable-row">
                                     <th scope="row">{{ user.username }}</th>
                                     <td>{{ user.firstName }}</td>
                                     <td>{{ user.lastName }}</td>
@@ -136,6 +137,7 @@
                                             {% endif %}
                                         {% endfor %}
                                     </td>
+                                    <td><a href="{{ path('admin_edit', {'user': user.id}) }}"><button class="btn btn-info"><i class="fa fa-edit"></i></button></a></td>
                                 </tr>
                             {% endfor %}
                             </tbody>

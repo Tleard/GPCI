@@ -39,6 +39,12 @@ class Booking
      */
     private $class;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Room")
+     * @ORM\JoinColumn(nullable=true, name="room")
+     */
+    private $room;
+
     public function getId()
     {
         return $this->id;
@@ -96,5 +102,19 @@ class Booking
         $this->class = $class;
     }
 
+    /**
+     * @return Room
+     */
+    public function getRoom()
+    {
+        return $this->room;
+    }
 
+    /**
+     * @param Room $room
+     */
+    public function setRoom($room)
+    {
+        $this->room = $room;
+    }
 }
