@@ -26,9 +26,6 @@ class UserType extends AbstractType
             ->add('email', EmailType::class, array(
                 "label" => "Adresse Mail"
             ))
-            ->add('password', TextType::class, array(
-                "label" => "Mot de passe"
-            ))
             ->add('firstName', TextType::class, array(
                 "label" => "Prénom"
             ))

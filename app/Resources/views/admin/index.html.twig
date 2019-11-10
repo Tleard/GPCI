@@ -49,16 +49,16 @@
             <ul class="list-unstyled components">
                 {#Todo: Add class Active#}
                 <li>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-calendar-alt"></i> Planning</a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu">
-                        <li>
-                            <a href="{{ path('booking_calendar') }}"><i class="fa fa-calendar"></i> Voir le calendrier</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('booking_new') }}"><i class="fa fa-calendar-plus"></i> Créer un évenement</a>
-                        </li>
-                    </ul>
-                </li>
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-calendar-alt"></i> Planning</a>
+                <ul class="collapse list-unstyled" id="pageSubmenu">
+                    <li>
+                        <a href="{{ path('booking_calendar') }}"><i class="fa fa-calendar"></i> Voir le calendrier</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('booking_new') }}"><i class="fa fa-calendar-plus"></i> Créer un évenement</a>
+                    </li>
+                </ul>
+            </li>
                 <li>
                     <a href="{{path('admin_index')}}"><i class="fas fa-unlock"></i>  Admin</a>
                 </li>

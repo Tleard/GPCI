@@ -46,6 +46,9 @@
         <ul class="list-unstyled components">
             {#Todo: Add class Active#}
             <li>
+                <a href="{{ path('homepage') }}"><i class="fas fa-home"></i>  Accueil</a>
+            </li>
+            <li>
                 <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-calendar-alt"></i> Planning</a>
                 <ul class="collapse list-unstyled" id="pageSubmenu">
                     <li>
@@ -120,13 +123,30 @@
                                 </div>
                             </div>
                         </div>
+                        {{ dump() }}
                         <div class="form-row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
+                                <div class="input-group-desc">
+                                    <div class="input-group-desc">
+                                        {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                    <label class="label--desc">{{ form_label(form.username) }}</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
                                 <div class="input-group-desc">
                                     <div class="input-group-desc">
                                         {{ form_widget(form.group, {'attr': {'class': 'select'}}) }}
                                     </div>
                                     <label class="label--desc">{{ form_label(form.group) }}</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="input-group-desc">
+                                    <div class="input-group-desc">
+                                        {{ form_widget(form.roles, {'attr': {'class': 'select'}}) }}
+                                    </div>
+                                    <label class="label--desc">{{ form_label(form.roles) }}</label>
                                 </div>
                             </div>
                         </div>
@@ -161,8 +181,10 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
 <script type="text/javascript">
-    $(document).ready(function() {
-        $('.select').select2();
+    $(document).ready(function () {
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('active');
+        });
     });
 </script>
 </body>
