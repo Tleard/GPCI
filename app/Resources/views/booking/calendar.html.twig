@@ -26,13 +26,13 @@
                 editable: true,
                 eventSources: [
                     {
-                        url: "{{ path('fc_load_events') }}",
-                        method: "GET",
+                        url: "/fc-load-events",
+                        method: "POST",
                         extraParams: {
                             filters: JSON.stringify({})
                         },
                         failure: () => {
-                            //alert("There was an error while fetching FullCalendar");
+                            // alert("There was an error while fetching FullCalendar!");
                         },
                     },
                 ],
