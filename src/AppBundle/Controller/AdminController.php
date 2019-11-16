@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\User;
 use AppBundle\Form\UserType;
 use AppBundle\Manager\AdminManager;
+use AppBundle\Manager\ClassManager;
 use AppBundle\Manager\GroupManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,11 +21,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminController extends Controller
 {
     /**
+     * @param AdminManager $adminManager
+     * @param GroupManager $groupManager
+     * @param ClassManager $classManager
+     *
      * Lists all booking entities.
      *
      * @Route("/", name="admin_index", methods={"GET"})
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
-    public function indexAction(AdminManager $adminManager, GroupManager$groupManager)
+    public function indexAction(AdminManager $adminManager, GroupManager $groupManager , ClassManager $classManager)
     {
         $roles = $this->getUser()->getRoles();
 
@@ -36,10 +42,12 @@ class AdminController extends Controller
 
         $users = $adminManager->findAll();
         $groups = $groupManager->findAll();
+        $classes = $classManager->findAll();
 
         return $this->render(':admin:index.html.twig', array(
             'users' => $users,
-            'groups' => $groups
+            'groups' => $groups,
+            'classes' => $classes
         ));
     }
 

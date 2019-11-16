@@ -55,3 +55,7 @@ services:
         tags:
             - "GroupRepository"
 
+    AppBundle\Repository\ClassRepository:
+        tags:
+            - "ClassRepository"
+

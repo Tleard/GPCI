@@ -17,7 +17,7 @@ class CalendarListener
         $this->bookingRepository = $bookingRepository;
     }
 
-    public function load(CalendarEvent $calendar): void
+    /*public function load(CalendarEvent $calendar): void
     {
         $start = $calendar->getStart();
         $end = $calendar->getEnd();
@@ -47,7 +47,7 @@ class CalendarListener
              *
              * For more information see: https://fullcalendar.io/docs/event-object
              * and: https://github.com/fullcalendar/fullcalendar/blob/master/src/core/options.ts
-             */
+             *
 
             $bookingEvent->setOptions([
                 'backgroundColor' => 'red',
@@ -58,5 +58,5 @@ class CalendarListener
             // finally, add the event to the CalendarEvent to fill the calendar
             $calendar->addEvent($bookingEvent);
         }
-    }
+    }*/
 }

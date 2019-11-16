@@ -75,7 +75,7 @@ class CalendarSubscriber implements EventSubscriberInterface
             );
 
             // finally, add the event to the CalendarEvent to fill the calendar
-            $calendar->addEvent($bookingEvent);
+            //$calendar->addEvent($bookingEvent);
         }
     }
 
@@ -111,11 +111,18 @@ class CalendarSubscriber implements EventSubscriberInterface
              * and: https://github.com/fullcalendar/fullcalendar/blob/master/src/core/options.ts
              */
 
-            $bookingEvent->setOptions([
-                'backgroundColor' => 'red',
-                'borderColor' => 'red',
-            ]);
-            $bookingEvent->addOption('url', 'https://github.com');
+            $bookingEvent->addOption(
+                'url',
+                $this->router->generate('booking_show', [
+                    'id' => $booking->getId(),
+                ])
+            );
+            $bookingEvent->addOption(
+                'url',
+                $this->router->generate('booking_show', [
+                    'id' => $booking->getId(),
+                ])
+            );
 
             // finally, add the event to the CalendarEvent to fill the calendar
             $calendar->addEvent($bookingEvent);

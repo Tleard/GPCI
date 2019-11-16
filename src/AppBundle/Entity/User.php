@@ -31,6 +31,16 @@ class User extends BaseUser
     protected $group;
 
     /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Classe")
+     * @ORM\JoinTable(name="courses_link",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="courses_id", referencedColumnName="id")}
+     * ),
+     * @ORM\JoinColumn(nullable=true)
+     */
+    protected $courses;
+
+    /**
      * @ORM\Column(type="string", length=255, name="first_name", nullable=true)
      *
      * @Assert\NotBlank(message="Please enter your first name.", groups={"Registration", "Profile"})
@@ -39,7 +49,6 @@ class User extends BaseUser
      *     max=50,
      *     minMessage="The first name is too short.",
      *     maxMessage="The first name is too long.",
-     *     groups={"Registration", "Profile"}
      * )
      */
     protected $firstName;
@@ -54,7 +63,6 @@ class User extends BaseUser
      *     max=50,
      *     minMessage="The last name is too short.",
      *     maxMessage="The last name is too long.",
-     *     groups={"Registration", "Profile"}
      * )
      */
     protected $LastName;

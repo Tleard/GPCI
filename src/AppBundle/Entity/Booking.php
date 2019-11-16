@@ -35,16 +35,15 @@ class Booking
 
     /**
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Classe")
-     * @ORM\JoinColumn(nullable=true, name="class")
+     * @ORM\JoinColumn(nullable=true, name="course")
      */
-    private $class;
+    private $course;
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Room")
      * @ORM\JoinColumn(nullable=true, name="room")
      */
     private $room;
-
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
