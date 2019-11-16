@@ -21,6 +21,14 @@
                 <th>Title</th>
                 <td>{{ booking.title }}</td>
             </tr>
+            <tr>
+                <th>Salle</th>
+                <td>{{ booking.room.name }}</td>
+            </tr>
+            <tr>
+                <th>Professeur</th>
+                <td>{{ booking.supervisor.firstName}} {{ booking.supervisor.lastName }}</td>
+            </tr>
         </tbody>
     </table>
 
@@ -32,6 +40,7 @@
             <a href="{{ path('booking_edit', { 'id': booking.id }) }}">Edit</a>
         </li>
         <li>
+            {{ dump(booking) }}
             {{ form_start(delete_form) }}
                 <input type="submit" value="Delete">
             {{ form_end(delete_form) }}

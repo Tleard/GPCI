@@ -63,7 +63,7 @@
                     <a href="{{path('admin_index')}}"><i class="fas fa-unlock"></i>  Admin</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fas fa-user"></i>  User</a>
+                    <a href="{{ path('user_index') }}"><i class="fas fa-user"></i>  User</a>
                 </li>
             </ul>
 
@@ -93,6 +93,10 @@
                 <i class="fas fa-align-left"></i>
                 <span>Créer un groupe</span>
             </a>
+            <a type="button" id="sidebarCollapse" href="{{ path('class_create') }}" class="btn btn-info mb-4">
+                <i class="fas fa-align-left"></i>
+                <span>Créer une matiére</span>
+            </a>
             {% for flashMessage in app.session.flashbag.get('success') %}
                 {{ flashMessage }}
             {% endfor %}
@@ -101,6 +105,7 @@
             {% endfor %}
             <div class="row">
                 <div class="col-12">
+                    {{ dump() }}
                     {% block body %}
                         <br>
                         <h2>Liste des Utilisateurs</h2>
