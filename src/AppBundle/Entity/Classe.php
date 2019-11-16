@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Class
  *
- * @ORM\Table(name="class")
+ * @ORM\Table(name="courses")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ClassRepository")
  */
 class Classe
@@ -37,6 +37,13 @@ class Classe
      * @ORM\JoinColumn(nullable=false)
      */
     private $supervisor;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="color", type="string", length=255)
+     */
+    private $color;
 
 
     /**
@@ -120,5 +127,23 @@ class Classe
     {
         return $this->supervisor;
     }
+
+    /**
+     * @return string
+     */
+    public function getColor(): string
+    {
+        return $this->color;
+    }
+
+    /**
+     * @param string $color
+     */
+    public function setColor(string $color): void
+    {
+        $this->color = $color;
+    }
+
+
 }
 
