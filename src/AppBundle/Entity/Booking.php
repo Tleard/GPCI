@@ -45,6 +45,13 @@ class Booking
      */
     private $room;
 
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinColumn(nullable=true, name="supervisor")
+     */
+    private $supervisor;
+
     public function getId()
     {
         return $this->id;
@@ -117,4 +124,22 @@ class Booking
     {
         $this->room = $room;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getSupervisor()
+    {
+        return $this->supervisor;
+    }
+
+    /**
+     * @param mixed $supervisor
+     */
+    public function setSupervisor($supervisor): void
+    {
+        $this->supervisor = $supervisor;
+    }
+
+
 }
