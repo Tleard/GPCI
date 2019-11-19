@@ -1,9 +1,11 @@
 /.web-server-pid
-!/vendor/friendsofsymfony/
 /app/config/parameters.yml
 /build/
 /phpunit.xml
 /var/*
+/vendor/*
+!/vendor/friendsofsymfony/
+!/vendor/tattali
 /var/cache/*
 !var/cache/.gitkeep
 /var/logs/*
@@ -12,7 +14,6 @@
 /var/sessions/*
 !var/sessions/.gitkeep
 !var/SymfonyRequirements.php
-/vendor/
 /web/bundles/
 !/vendor/friendsofsymfony/Ressources/views/Security/login.html.twig
 !/vendor/friendsofsymfony/Ressources/views/Security/login_content.html.twig
