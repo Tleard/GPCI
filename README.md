@@ -1,77 +1,44 @@
-Symfony Standard Edition
+![](web/images/ifide_Logo.png)
+
+Gestion de Planning
 ========================
+Ce projet à été réalisé dans le cadre d'un BTS SIO option SLAM avec [Dylan Martin][16]
 
-**WARNING**: This distribution does not support Symfony 4. See the
-[Installing & Setting up the Symfony Framework][15] page to find a replacement
-that fits you best.
-
-Welcome to the Symfony Standard Edition - a fully-functional Symfony
-application that you can use as the skeleton for your new applications.
-
-For details on how to download and get started with Symfony, see the
-[Installation][1] chapter of the Symfony Documentation.
-
-What's inside?
+Qu'est-ce que le projet GPCI?
 --------------
 
-The Symfony Standard Edition is configured with the following defaults:
+Le but de ce projet est de réaliser une application web permettant de 
+faciliter la réalisation de planning de cours.
 
-  * An AppBundle you can use to start coding;
+Cette application permet de :
 
-  * Twig as the only configured template engine;
+- Créer des utilisateurs (administrateur, professeur et planificateurs)
+- Créer des périodes de cours liés à une class, une matiére et un enseignant.
+- Déclarer des jours de congés, des périodes de vacances ainsi que des jours fériés
+- Créer des cours 
+- Créer des groupes
+- Télécharger des emplois du temps 
+- Permettre aux professeurs de déclarer des indisponibilités
+- Gêrer les étudiants, professeur ainsi qu'administrateurs
 
-  * Doctrine ORM/DBAL;
+Technologies utilisé
+--------------
 
-  * Swiftmailer;
+- [Symfony Standard Edition 3.4][1]
+- [FullCalendar.js][2] et le Bundle créer par tattali [CalendarBundle][5]
+- [Bootstrap][3]
+- [Jquery][4]
+- [FOSUserBundle][6]
 
-  * Annotations enabled for everything.
+------------
 
-It comes pre-configured with the following bundles:
-
-  * **FrameworkBundle** - The core Symfony framework bundle
-
-  * [**SensioFrameworkExtraBundle**][6] - Adds several enhancements, including
-    template and routing annotation capability
-
-  * [**DoctrineBundle**][7] - Adds support for the Doctrine ORM
-
-  * [**TwigBundle**][8] - Adds support for the Twig templating engine
-
-  * [**SecurityBundle**][9] - Adds security by integrating Symfony's security
-    component
-
-  * [**SwiftmailerBundle**][10] - Adds support for Swiftmailer, a library for
-    sending emails
-
-  * [**MonologBundle**][11] - Adds support for Monolog, a logging library
-
-  * **WebProfilerBundle** (in dev/test env) - Adds profiling functionality and
-    the web debug toolbar
-
-  * **SensioDistributionBundle** (in dev/test env) - Adds functionality for
-    configuring and working with Symfony distributions
-
-  * [**SensioGeneratorBundle**][13] (in dev env) - Adds code generation
-    capabilities
-
-  * [**WebServerBundle**][14] (in dev env) - Adds commands for running applications
-    using the PHP built-in web server
-
-  * **DebugBundle** (in dev/test env) - Adds Debug and VarDumper component
-    integration
-
-All libraries and bundles included in the Symfony Standard Edition are
-released under the MIT or BSD license.
-
-Enjoy!
+Enjoy ;)
 
 [1]:  https://symfony.com/doc/3.4/setup.html
-[6]:  https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/index.html
-[7]:  https://symfony.com/doc/3.4/doctrine.html
-[8]:  https://symfony.com/doc/3.4/templating.html
-[9]:  https://symfony.com/doc/3.4/security.html
-[10]: https://symfony.com/doc/3.4/email.html
-[11]: https://symfony.com/doc/3.4/logging.html
-[13]: https://symfony.com/doc/current/bundles/SensioGeneratorBundle/index.html
-[14]: https://symfony.com/doc/current/setup/built_in_web_server.html
-[15]: https://symfony.com/doc/current/setup.html
+[2]:  https://fullcalendar.io/
+[3]:  https://getbootstrap.com/
+[4]:  https://jquery.com/
+[5]:  https://github.com/tattali/
+[6]:  https://github.com/FriendsOfSymfony/FOSUserBundle/blob/master/Resources/doc/index.rst
+[16]: https://github.com/LaBelette
+
