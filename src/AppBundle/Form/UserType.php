@@ -40,6 +40,7 @@ class UserType extends AbstractType
                 ),
                 'multiple' => true
             ))
+            ->add('password', TextType::class)
             ->add('group', EntityType::class, array(
                 'choice_label' => 'name',
                 'class' => Group::class,

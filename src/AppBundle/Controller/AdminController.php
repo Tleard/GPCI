@@ -5,7 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\User;
 use AppBundle\Form\UserType;
 use AppBundle\Manager\AdminManager;
-use AppBundle\Manager\ClassManager;
+use AppBundle\Manager\CoursesManager;
 use AppBundle\Manager\GroupManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,14 +23,14 @@ class AdminController extends Controller
     /**
      * @param AdminManager $adminManager
      * @param GroupManager $groupManager
-     * @param ClassManager $classManager
+     * @param CoursesManager $coursesManager
      *
      * Lists all booking entities.
      *
      * @Route("/", name="admin_index", methods={"GET"})
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
-    public function indexAction(AdminManager $adminManager, GroupManager $groupManager , ClassManager $classManager)
+    public function indexAction(AdminManager $adminManager, GroupManager $groupManager , CoursesManager $coursesManager)
     {
         $roles = $this->getUser()->getRoles();
 
@@ -42,12 +42,12 @@ class AdminController extends Controller
 
         $users = $adminManager->findAll();
         $groups = $groupManager->findAll();
-        $classes = $classManager->findAll();
+        $courses = $coursesManager->findAll();
 
         return $this->render(':admin:index.html.twig', array(
             'users' => $users,
             'groups' => $groups,
-            'classes' => $classes
+            'courses' => $courses
         ));
     }
 
@@ -73,6 +73,7 @@ class AdminController extends Controller
             'action' => $this->generateUrl('admin_create')
         ));
         $form->handleRequest($request);
+        dump($user);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $adminManager->createOrUpdate($user);

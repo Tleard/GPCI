@@ -34,7 +34,7 @@ class Booking
     private $title;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Classe")
+     * @ORM\ManyToMany(targetEntity="Courses")
      * @ORM\JoinColumn(nullable=true, name="course")
      */
     private $course;
@@ -93,7 +93,7 @@ class Booking
     }
 
     /**
-     * @return Classe
+     * @return Courses
      */
     public function getClass()
     {
@@ -101,7 +101,7 @@ class Booking
     }
 
     /**
-     * @param Classe $class
+     * @param Courses $class
      */
     public function setClass($class)
     {

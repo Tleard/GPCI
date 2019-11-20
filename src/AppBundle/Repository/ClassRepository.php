@@ -2,7 +2,7 @@
 
 namespace AppBundle\Repository;
 
-use AppBundle\Entity\Classe;
+use AppBundle\Entity\Courses;
 use AppBundle\Entity\Group;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\EntityRepository;
@@ -18,6 +18,6 @@ class ClassRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Classe::class);
+        parent::__construct($registry, Courses::class);
     }
 }

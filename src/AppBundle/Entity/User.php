@@ -31,7 +31,7 @@ class User extends BaseUser
     protected $group;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Classe")
+     * @ORM\ManyToMany(targetEntity="Courses")
      * @ORM\JoinTable(name="courses_link",
      *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="courses_id", referencedColumnName="id")}

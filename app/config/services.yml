@@ -59,3 +59,7 @@ services:
         tags:
             - "ClassRepository"
 
+    AppBundle\Repository\CoursesRepository:
+        tags:
+            - "CoursesRepository"
+

@@ -26,11 +26,32 @@ class AdminManager
     }
 
     /**
+     * @param User $user
+     * @param bool|null $flush
+     */
+    public function createOrUpdate(User $user, ?bool $flush = true): void
+    {
+        /** @var int|null $id */
+        $id = $user->getId();
+
+        /**
+         * Si id null, alors c'est une création
+         */
+        if ($id === null) {
+            $this->entityManager->persist($user);
+            #TODO SwiftMailer
+        }
+        if ($flush === true) {
+            $this->entityManager->flush();
+        }
+    }
+
+    /**
      * @return Collection|User[]
      */
-    public function findAll(): Collection
+    public function findAll()
     {
-        return new ArrayCollection($this->adminRepository->findAll());
+        return $this->adminRepository->findAll();
     }
 
 }

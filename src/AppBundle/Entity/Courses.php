@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="courses")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ClassRepository")
  */
-class Classe
+class Courses
 {
     /**
      * @var int
@@ -27,21 +27,23 @@ class Classe
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
+
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Group")
      * @ORM\JoinColumn(nullable=true)
      */
     private $groups;
+
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $supervisor;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="color", type="string", length=255)
+     * @ORM\Column(name="color", type="string", length=255, nullable=true)
      */
     private $color;
 
@@ -61,7 +63,7 @@ class Classe
      *
      * @param string $name
      *
-     * @return Class
+     * @return Courses
      */
     public function setName($name)
     {
@@ -85,7 +87,7 @@ class Classe
      *
      * @param string $groups
      *
-     * @return Class
+     * @return Courses
      */
     public function setGroups($groups)
     {
@@ -109,7 +111,7 @@ class Classe
      *
      * @param string $supervisor
      *
-     * @return Class
+     * @return Courses
      */
     public function setSupervisor($supervisor)
     {
