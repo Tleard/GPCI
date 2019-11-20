@@ -29,7 +29,7 @@ class Booking
     private $endAt = null;
 
     /**
-     * @ORM\Column(type="string", length=255, name="title")
+     * @ORM\Column(type="string", length=255, name="title", nullable=true)
      */
     private $title;
 
@@ -50,6 +50,12 @@ class Booking
      * @ORM\JoinColumn(nullable=true, name="supervisor")
      */
     private $supervisor;
+
+    /**
+     * @var boolean
+     * @ORM\Column(nullable=true, name="unavailability")
+     */
+    private $unavailability;
 
     public function getId()
     {
@@ -138,6 +144,38 @@ class Booking
     public function setSupervisor($supervisor): void
     {
         $this->supervisor = $supervisor;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCourse()
+    {
+        return $this->course;
+    }
+
+    /**
+     * @param mixed $course
+     */
+    public function setCourse($course): void
+    {
+        $this->course = $course;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isUnavailability(): bool
+    {
+        return $this->unavailability;
+    }
+
+    /**
+     * @param bool $unavailability
+     */
+    public function setUnavailability(bool $unavailability): void
+    {
+        $this->unavailability = $unavailability;
     }
 
 
