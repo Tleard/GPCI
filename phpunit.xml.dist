@@ -10,6 +10,11 @@
     <php>
         <ini name="error_reporting" value="-1" />
         <server name="KERNEL_CLASS" value="AppKernel" />
+
+        <!-- ###+ knplabs/knp-snappy-bundle ### -->
+        <env name="WKHTMLTOPDF_PATH" value="/usr/local/bin/wkhtmltopdf"/>
+        <env name="WKHTMLTOIMAGE_PATH" value="/usr/local/bin/wkhtmltoimage"/>
+        <!-- ###- knplabs/knp-snappy-bundle ### -->
     </php>
 
     <testsuites>

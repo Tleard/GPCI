@@ -84,3 +84,14 @@ swiftmailer:
 sensio_framework_extra:
    router:
         annotations: false
+#Knp Snappy Configuration
+knp_snappy:
+    pdf:
+        enabled:    true
+        binary:     /usr/local/bin/wkhtmltopdf
+        options:    []
+    image:
+        enabled:    true
+        binary:     /usr/local/bin/wkhtmltoimage
+        options:    []
+    temporary_folder: "%kernel.root_dir%/web/pdf"
