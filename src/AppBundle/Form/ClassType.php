@@ -20,7 +20,7 @@ class ClassType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
-            ->add('supervisor', EntityType::class, [
+            ->add('professor', EntityType::class, [
                 'class' => User::class,
                 'choice_label' => 'lastName',
                 'required' => true,

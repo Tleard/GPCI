@@ -40,7 +40,7 @@ class SupervisorBookingType extends AbstractType
                 'required' => true,
                 'label' => 'booking.room'
             ])*/
-            /*->add('supervisor', EntityType::class, [
+            /*->add('professor', EntityType::class, [
                 'class' => User::class,
                 'choice_label' => 'lastName',
                 'required' => true,

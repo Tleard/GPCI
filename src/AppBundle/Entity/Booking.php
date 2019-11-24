@@ -47,7 +47,7 @@ class Booking
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
-     * @ORM\JoinColumn(nullable=true, name="supervisor")
+     * @ORM\JoinColumn(nullable=true, name="professor")
      */
     private $supervisor;
 

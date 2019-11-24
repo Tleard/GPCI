@@ -45,7 +45,7 @@ class ProfessorController extends Controller
 
             return $this->redirectToRoute('homepage');
         }
-        return $this->render('supervisor/show.html.twig', array(
+        return $this->render('professor/show.html.twig', array(
             'booking' => $booking,
             'form' => $form->createView(),
         ));

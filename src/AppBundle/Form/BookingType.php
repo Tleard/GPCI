@@ -10,6 +10,7 @@ use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -21,11 +22,11 @@ class BookingType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('beginAt', null, [
+            ->add('beginAt', DateTimeType::class, [
                 'required' => true,
                 'label' => 'booking.begin_at',
             ])
-            ->add('endAt', null, [
+            ->add('endAt', DateTimeType::class, [
                 'required' => true,
                 'label' => 'booking.end_at'
             ])

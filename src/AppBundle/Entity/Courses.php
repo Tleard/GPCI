@@ -107,7 +107,7 @@ class Courses
     }
 
     /**
-     * Set supervisor
+     * Set professor
      *
      * @param string $supervisor
      *
@@ -121,7 +121,7 @@ class Courses
     }
 
     /**
-     * Get supervisor
+     * Get professor
      *
      * @return string
      */

@@ -27,7 +27,7 @@ class CoursesType extends AbstractType
                 'class' => Group::class,
                 'multiple' => false
                 ))
-            ->add('supervisor', EntityType::class, array(
+            ->add('professor', EntityType::class, array(
                 'choice_label' => 'lastName',
                 'class' => User::class,
                 'multiple' => false
