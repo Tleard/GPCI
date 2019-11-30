@@ -34,7 +34,7 @@ class Booking
     private $title;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Courses")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Courses")
      * @ORM\JoinColumn(nullable=true, name="course")
      */
     private $course;
@@ -47,7 +47,7 @@ class Booking
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
-     * @ORM\JoinColumn(nullable=true, name="professor")
+     * @ORM\JoinColumn(nullable=true, name="supervisor")
      */
     private $supervisor;
 
@@ -104,21 +104,7 @@ class Booking
         return $this;
     }
 
-    /**
-     * @return Courses
-     */
-    public function getClass()
-    {
-        return $this->class;
-    }
 
-    /**
-     * @param Courses $class
-     */
-    public function setClass($class)
-    {
-        $this->class = $class;
-    }
 
     /**
      * @return Room

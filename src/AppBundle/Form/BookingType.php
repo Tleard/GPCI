@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Courses;
 use AppBundle\Entity\Room;
 use AppBundle\Entity\User;
 use Doctrine\DBAL\Types\DateType;
@@ -39,6 +40,12 @@ class BookingType extends AbstractType
                 'choice_label' => 'name',
                 'required' => true,
                 'label' => 'booking.room'
+            ])
+            ->add('course', EntityType::class, [
+                'class' => Courses::class,
+                'choice_label' => 'name',
+                'required' => true,
+                'label' => 'booking.courses'
             ])
             ->add('supervisor', EntityType::class, [
                 'class' => User::class,

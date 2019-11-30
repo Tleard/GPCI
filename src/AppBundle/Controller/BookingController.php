@@ -72,14 +72,25 @@ class BookingController extends Controller
 
             $em = $this->getDoctrine()->getManager();
 
-            //Check Date by begin_at
-            $date = $em->getRepository(Booking::class)->findOneBy(["beginAt" => $booking->getBeginAt()]);
-            $date = $date->getBeginAt();
+                //$group = $em->getRepository(Booking::class)->findBy(["course" => $booking->getCourse()]);
+                //$em->getRepository(Booking::class)->findBy(["course" => $booking->getCourse()]);
+                //dump($booking->getCourse());
+                //exit();
 
-            if ($date == $booking->getBeginAt()) {
+                //Check Date by begin_at
+                $date_begin = $em->getRepository(Booking::class)->findOneBy(["beginAt" => $booking->getBeginAt()]);
+                $date_begin = $date_begin->getBeginAt();
 
-                throw new InvalidArgumentException("Vous ne pouvez pas se faire superposé des cours pour la même classe");
-            }
+                //Check Date by end_at
+                $date_end = $em->getRepository(Booking::class)->findOneBy(["endAt" => $booking->getEndAt()]);
+                $date_end = $date_end->getEndAt();
+
+                if ($date_begin == $booking->getBeginAt() || $date_end == $booking->getEndAt()) {
+
+                    throw new InvalidArgumentException("Vous ne pouvez pas se faire superposé des cours pour la même classe");
+                }
+
+
 
 
             $em->persist($booking);
@@ -93,6 +104,8 @@ class BookingController extends Controller
             'form' => $form->createView(),
         ));
     }
+
+
 
     /**
      * Finds and displays a booking entity.

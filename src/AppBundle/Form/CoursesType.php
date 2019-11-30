@@ -2,7 +2,6 @@
 
 namespace AppBundle\Form;
 
-use AppBundle\Entity\Courses;
 use AppBundle\Entity\Group;
 use AppBundle\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -21,28 +20,30 @@ class CoursesType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
-
-            ->add('groups', EntityType::class, array(
-                'choice_label' => 'name',
-                'class' => Group::class,
-                'multiple' => false
-                ))
-            ->add('professor', EntityType::class, array(
-                'choice_label' => 'lastName',
+            ->add('supervisor', EntityType::class, [
                 'class' => User::class,
-                'multiple' => false
-            ))
+                'choice_label' => 'lastName',
+                'required' => true,
+                'label' => 'booking.user'
+            ])
+            ->add('group', EntityType::class, [
+                'class' => Group::class,
+                'choice_label' => 'name',
+                'required' => true,
+                'label' => 'booking.group'
+            ])
             ->add('submit', SubmitType::class, array(
                 'attr' => array(
                     'class' => 'btn btn-success'
-                )));
+                )
+            ));
     }/**
  * {@inheritdoc}
  */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => Courses::class
+            'data_class' => Group::class
         ));
     }
 
@@ -51,7 +52,7 @@ class CoursesType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_courses_create';
+        return 'appbundle_groupe_create';
     }
 
 
