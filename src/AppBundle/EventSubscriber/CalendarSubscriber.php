@@ -54,7 +54,8 @@ class CalendarSubscriber implements EventSubscriberInterface
                 $booking->getTitle(),
                 $booking->getBeginAt(),
                 $booking->getEndAt(), // If the end date is null or not defined, a all day event is created.
-                $booking->getColor()
+                $booking->getColor(),
+                $booking->getRoom()
             );
 
             /*
@@ -103,7 +104,8 @@ class CalendarSubscriber implements EventSubscriberInterface
                 $booking->getTitle(),
                 $booking->getBeginAt(),
                 $booking->getEndAt(),
-                $booking->getColor()
+                $booking->getColor(),
+                $booking->getRoom()
             // If the end date is null or not defined, a all day event is created.
             );
 

@@ -69,13 +69,15 @@ class BookingController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             //Set color by color on supervisor
             $booking->setColor($booking->getSupervisor()->getColor());
+            //Todo: Remove color on Supervisor and change to :
+            //$booking->setColor($booking->getCourses()->getColor());
 
             $em = $this->getDoctrine()->getManager();
 
-                //$group = $em->getRepository(Booking::class)->findBy(["course" => $booking->getCourse()]);
-                //$em->getRepository(Booking::class)->findBy(["course" => $booking->getCourse()]);
-                //dump($booking->getCourse());
-                //exit();
+                /*$group = $em->getRepository(Booking::class)->findBy(["course" => $booking->getCourse()]);
+                $em->getRepository(Booking::class)->findBy(["course" => $booking->getCourse()]);
+                dump($booking->getCourse());
+                exit();*/
 
                 //Check Date by begin_at
                 $date_begin = $em->getRepository(Booking::class)->findOneBy(["beginAt" => $booking->getBeginAt()]);

@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace CalendarBundle\Entity;
 
 use DateTimeInterface;
+use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Entity\Room;
 
 class Event
 {
@@ -41,6 +43,11 @@ class Event
     protected $color;
 
     /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Room", mappedBy="name", fetch="EXTRA_LAZY")
+     */
+    protected $room;
+
+    /**
      * @var string
      */
     protected $supervisor;
@@ -50,12 +57,14 @@ class Event
         DateTimeInterface $start,
         ?DateTimeInterface $end = null,
         string $color,
+        Room $room,
         array $options = []
     ) {
         $this->setTitle($title);
         $this->setStart($start);
         $this->setEnd($end);
         $this->setColor($color);
+        $this->setRoom($room);
         $this->setOptions($options);
     }
 
@@ -129,6 +138,22 @@ class Event
     }
 
     /**
+     * @return mixed
+     */
+    public function getRoom()
+    {
+        return $this->room;
+    }
+
+    /**
+     * @param mixed $room
+     */
+    public function setRoom($room): void
+    {
+        $this->room = $room;
+    }
+
+    /**
      * @return string
      */
     public function getSupervisor(): string
@@ -186,6 +211,7 @@ class Event
             'title' => $this->getTitle(),
             'start' => $this->getStart()->format(self::DATE_FORMAT),
             'color' => $this->getColor(),
+            'room' => $this->getRoom(),
             'allDay' => $this->isAllDay(),
         ];
 
