@@ -3,8 +3,11 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Booking;
+use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
+use http\Exception\UnexpectedValueException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -55,6 +58,7 @@ class BookingController extends Controller
      *
      * @Route("/new", name="booking_new", methods={"GET", "POST"})
      *
+     * @throws \Exception
      */
     public function newAction(Request $request)
     {
@@ -63,10 +67,21 @@ class BookingController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            //Todo: Constraints Holidays and unavailibility
+            //Set color by color on supervisor
             $booking->setColor($booking->getSupervisor()->getColor());
 
             $em = $this->getDoctrine()->getManager();
+
+            //Check Date by begin_at
+            $date = $em->getRepository(Booking::class)->findOneBy(["beginAt" => $booking->getBeginAt()]);
+            $date = $date->getBeginAt();
+
+            if ($date == $booking->getBeginAt()) {
+
+                throw new InvalidArgumentException("Vous ne pouvez pas se faire superposé des cours pour la même classe");
+            }
+
+
             $em->persist($booking);
             $em->flush();
 
