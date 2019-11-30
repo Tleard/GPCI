@@ -7,6 +7,7 @@ namespace CalendarBundle\Event;
 use CalendarBundle\Entity\Event;
 use CalendarBundle\Event\Event as BaseEvent;
 use DateTimeInterface;
+use AppBundle\Entity\Room;
 
 /**
  * This event is triggered before the serialization of the events.
@@ -36,6 +37,11 @@ class CalendarEvent extends BaseEvent
     protected $color;
 
     /**
+     * @var string
+     */
+    protected $room;
+
+    /**
      * @var Event[]
      */
     protected $events = [];
@@ -44,12 +50,14 @@ class CalendarEvent extends BaseEvent
         DateTimeInterface $start,
         DateTimeInterface $end,
         array $filters,
-        $color
+        $color,
+        $room
     ) {
         $this->start = $start;
         $this->end = $end;
         $this->filters = $filters;
         $this->color = $color;
+        $this->room = $room;
     }
 
     public function getStart(): DateTimeInterface
@@ -71,6 +79,23 @@ class CalendarEvent extends BaseEvent
     {
         return $this->color;
     }
+
+    /**
+     * @return string
+     */
+    public function getRoom(): string
+    {
+        return $this->room;
+    }
+
+    /**
+     * @param string $room
+     */
+    public function setRoom(string $room): void
+    {
+        $this->room = $room;
+    }
+
 
     public function addEvent(Event $event): self
     {

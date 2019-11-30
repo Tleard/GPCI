@@ -43,7 +43,7 @@ class Event
     protected $color;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Room", mappedBy="name", fetch="EXTRA_LAZY")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Room", mappedBy="id", fetch="LAZY")
      */
     protected $room;
 
@@ -208,12 +208,13 @@ class Event
     public function toArray(): array
     {
         $event = [
-            'title' => $this->getTitle(),
+            'title' => $this->getTitle() . "\n" . "\n" . "\n" . $this->getRoom()->getName(),
             'start' => $this->getStart()->format(self::DATE_FORMAT),
             'color' => $this->getColor(),
-            'room' => $this->getRoom(),
+            'room' => $this->getRoom()->getName(),
             'allDay' => $this->isAllDay(),
         ];
+
 
         if (null !== $this->getEnd()) {
             $event['end'] = $this->getEnd()->format(self::DATE_FORMAT);

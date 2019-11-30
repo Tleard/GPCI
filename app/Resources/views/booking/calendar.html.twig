@@ -1,6 +1,5 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    {{ dump(bookings) }}
     <div class="wrapper">
         <!-- Sidebar  -->
         <nav id="sidebar">
@@ -135,8 +134,6 @@
                 maxTime: "18:00:00",
                 timeZone: 'UTC',
             });
-
-
             calendar.render();
         });
     </script>
