@@ -31,6 +31,12 @@ class User extends BaseUser
     protected $group;
 
     /**
+     * @var string
+     * @ORM\Column(nullable=true, name="color" ,options={"default":"blue"})
+     */
+    private $color;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Courses")
      * @ORM\JoinTable(name="courses_link",
      *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
@@ -124,6 +130,22 @@ class User extends BaseUser
     {
         $this->firstName = $firstName;
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getColor(): string
+    {
+        return $this->color;
+    }
+
+    /**
+     * @param string $color
+     */
+    public function setColor(string $color): void
+    {
+        $this->color = $color;
     }
 
 
