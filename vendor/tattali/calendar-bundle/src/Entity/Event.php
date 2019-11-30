@@ -38,17 +38,24 @@ class Event
     /**
      * @var string
      */
+    protected $color;
+
+    /**
+     * @var string
+     */
     protected $supervisor;
 
     public function __construct(
         string $title,
         DateTimeInterface $start,
         ?DateTimeInterface $end = null,
+        string $color,
         array $options = []
     ) {
         $this->setTitle($title);
         $this->setStart($start);
         $this->setEnd($end);
+        $this->setColor($color);
         $this->setOptions($options);
     }
 
@@ -105,6 +112,40 @@ class Event
         $this->options = $options;
     }
 
+    /**
+     * @return string
+     */
+    public function getColor(): string
+    {
+        return $this->color;
+    }
+
+    /**
+     * @param string $color
+     */
+    public function setColor(string $color): void
+    {
+        $this->color = $color;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSupervisor(): string
+    {
+        return $this->supervisor;
+    }
+
+    /**
+     * @param string $supervisor
+     */
+    public function setSupervisor(string $supervisor): void
+    {
+        $this->supervisor = $supervisor;
+    }
+
+
+
 
     /**
      * @param string|int $name
@@ -144,6 +185,7 @@ class Event
         $event = [
             'title' => $this->getTitle(),
             'start' => $this->getStart()->format(self::DATE_FORMAT),
+            'color' => $this->getColor(),
             'allDay' => $this->isAllDay(),
         ];
 

@@ -57,6 +57,12 @@ class Booking
      */
     private $unavailability;
 
+    /**
+     * @var string
+     * @ORM\Column(nullable=true, name="color")
+     */
+    private $color;
+
     public function getId()
     {
         return $this->id;
@@ -176,6 +182,22 @@ class Booking
     public function setUnavailability(bool $unavailability): void
     {
         $this->unavailability = $unavailability;
+    }
+
+    /**
+     * @return string
+     */
+    public function getColor(): string
+    {
+        return $this->color;
+    }
+
+    /**
+     * @param string $color
+     */
+    public function setColor(string $color): void
+    {
+        $this->color = $color;
     }
 
 

@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block body %}
+    {{ dump(bookings) }}
     <div class="wrapper">
         <!-- Sidebar  -->
         <nav id="sidebar">
@@ -111,7 +112,7 @@
                             filters: JSON.stringify({})
                         },
                         failure: () => {
-                            // alert("There was an error while fetching FullCalendar!");
+                             alert("There was an error while fetching FullCalendar!");
                         },
                     },
                 ],
@@ -133,6 +134,8 @@
                 maxTime: "18:00:00",
                 timeZone: 'UTC',
             });
+
+
             calendar.render();
         });
     </script>

@@ -42,6 +42,7 @@ services:
     AppBundle\EventSubscriber\CalendarSubscriber:
         tags:
             - { name: 'kernel.event_listener', event: 'calendar.set_data', method: load }
+#           Use of method load to give parameters
 
     AppBundle\Repository\BookingRepository:
         tags:

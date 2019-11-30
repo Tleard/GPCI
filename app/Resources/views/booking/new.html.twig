@@ -51,7 +51,7 @@
             </button>
             <br>
             <h1>Créer un cours</h1>
-            
+
             {{ form_start(form) }}
             <div class="form-row">
                 <div class="col-md-4">
@@ -65,7 +65,7 @@
                 <div class="col-md-4">
                     <div class="input-group-desc">
                         <div class="input-group-desc">
-                            {{ form_widget(form.endAt, {'attr': {'id': 'datetimepicket'}}) }}
+                            {{ form_widget(form.endAt, {'attr': {'id': 'form-control'}}) }}
                         </div>
                         <label class="label--desc">{{ form_label(form.endAt) }}</label>
                     </div>
@@ -141,10 +141,12 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.1.0/main.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.1.0/main.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@4.1.0/main.min.css">
 {% endblock %}
 
 {% block javascripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.1.0/main.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@4.1.0/main.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.1.0/main.min.js"></script>
@@ -166,6 +168,8 @@
         });
     </script>
     <script type="text/javascript">
-        $('#datetimepicker').data("DateTimePicker").FUNCTION()
+        $(function () {
+            $('#datetimepicker1').datetimepicker();
+        });
     </script>
 {% endblock %}

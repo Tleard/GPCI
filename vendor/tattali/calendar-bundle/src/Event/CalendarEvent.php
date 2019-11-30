@@ -31,6 +31,11 @@ class CalendarEvent extends BaseEvent
     protected $filters;
 
     /**
+     * @var string
+     */
+    protected $color;
+
+    /**
      * @var Event[]
      */
     protected $events = [];
@@ -38,11 +43,13 @@ class CalendarEvent extends BaseEvent
     public function __construct(
         DateTimeInterface $start,
         DateTimeInterface $end,
-        array $filters
+        array $filters,
+        $color
     ) {
         $this->start = $start;
         $this->end = $end;
         $this->filters = $filters;
+        $this->color = $color;
     }
 
     public function getStart(): DateTimeInterface
@@ -58,6 +65,11 @@ class CalendarEvent extends BaseEvent
     public function getFilters(): array
     {
         return $this->filters;
+    }
+
+    public function getColor()
+    {
+        return $this->color;
     }
 
     public function addEvent(Event $event): self
