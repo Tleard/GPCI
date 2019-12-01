@@ -8,12 +8,14 @@ use CalendarBundle\Entity\Event;
 use CalendarBundle\Event\Event as BaseEvent;
 use DateTimeInterface;
 use AppBundle\Entity\Room;
+use AppBundle\Entity\User;
 
 /**
  * This event is triggered before the serialization of the events.
  *
  * This event allows you to fill the calendar with your data.
  */
+
 class CalendarEvent extends BaseEvent
 {
     /**
@@ -42,6 +44,11 @@ class CalendarEvent extends BaseEvent
     protected $room;
 
     /**
+     * @var string
+     */
+    protected $supervisor;
+
+    /**
      * @var Event[]
      */
     protected $events = [];
@@ -51,12 +58,14 @@ class CalendarEvent extends BaseEvent
         DateTimeInterface $end,
         array $filters,
         $color,
+        $supervisor,
         $room
     ) {
         $this->start = $start;
         $this->end = $end;
         $this->filters = $filters;
         $this->color = $color;
+        $this->supervisor = $supervisor;
         $this->room = $room;
     }
 
@@ -79,6 +88,23 @@ class CalendarEvent extends BaseEvent
     {
         return $this->color;
     }
+
+    /**
+     * @return string
+     */
+    public function getSupervisor(): string
+    {
+        return $this->supervisor;
+    }
+
+    /**
+     * @param string $supervisor
+     */
+    public function setSupervisor(string $supervisor): void
+    {
+        $this->supervisor = $supervisor;
+    }
+
 
     /**
      * @return string

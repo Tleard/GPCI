@@ -39,11 +39,12 @@ class CalendarController extends AbstractController
         $end = new \DateTime($request->get('end'));
         $color = $request->get('color', "blue");
         $room = $request->get('room', "N/A");
+        $supervisor = $request->get('supervisor', 'N/A');
         $filters = $request->get('filters', '{}');
         $filters = \is_array($filters) ? $filters : json_decode($filters, true);
 
         $event = $this->dispatchWithBC(
-            new CalendarEvent($start, $end, $filters, $color, $room),
+            new CalendarEvent($start, $end, $filters, $color, $room, $supervisor),
             CalendarEvents::SET_DATA
         );
         $content = $this->serializer->serialize($event->getEvents());

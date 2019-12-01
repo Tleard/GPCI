@@ -7,6 +7,7 @@ namespace CalendarBundle\Entity;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Entity\Room;
+use AppBundle\Entity\User;
 
 class Event
 {
@@ -48,7 +49,7 @@ class Event
     protected $room;
 
     /**
-     * @var string
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User", mappedBy="id", fetch="LAZY")
      */
     protected $supervisor;
 
@@ -58,6 +59,7 @@ class Event
         ?DateTimeInterface $end = null,
         string $color,
         Room $room,
+        User $supervisor,
         array $options = []
     ) {
         $this->setTitle($title);
@@ -65,6 +67,7 @@ class Event
         $this->setEnd($end);
         $this->setColor($color);
         $this->setRoom($room);
+        $this->setSupervisor($supervisor);
         $this->setOptions($options);
     }
 
@@ -137,6 +140,7 @@ class Event
         $this->color = $color;
     }
 
+
     /**
      * @return mixed
      */
@@ -154,22 +158,20 @@ class Event
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getSupervisor(): string
+    public function getSupervisor()
     {
         return $this->supervisor;
     }
 
     /**
-     * @param string $supervisor
+     * @param mixed $supervisor
      */
-    public function setSupervisor(string $supervisor): void
+    public function setSupervisor($supervisor): void
     {
         $this->supervisor = $supervisor;
     }
-
-
 
 
     /**
@@ -208,9 +210,11 @@ class Event
     public function toArray(): array
     {
         $event = [
-            'title' => $this->getTitle() . "\n" . "\n" . "\n" . $this->getRoom()->getName(),
+            'title' =>$this->getTitle() . "\n" . "\n" . "\n" ."Salle : " .$this->getRoom()->getName() .
+            "\n Professeur : " . $this->getSupervisor()->getFirstName() . " " . $this->getSupervisor()->getLastName(),
             'start' => $this->getStart()->format(self::DATE_FORMAT),
             'color' => $this->getColor(),
+            'supervisor' => $this->getSupervisor()->getFirstName(),
             'room' => $this->getRoom()->getName(),
             'allDay' => $this->isAllDay(),
         ];

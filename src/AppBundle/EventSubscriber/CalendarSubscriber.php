@@ -5,6 +5,7 @@ namespace AppBundle\EventSubscriber;
 use AppBundle\Repository\BookingRepository;
 use CalendarBundle\CalendarEvents;
 use CalendarBundle\Entity\Event;
+use AppBundle\Entity\User;
 use CalendarBundle\Event\CalendarEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -55,7 +56,9 @@ class CalendarSubscriber implements EventSubscriberInterface
                 $booking->getBeginAt(),
                 $booking->getEndAt(), // If the end date is null or not defined, a all day event is created.
                 $booking->getColor(),
-                $booking->getRoom()
+                $booking->getRoom(),
+                $booking->getSupervisor()
+
             );
 
             /*
@@ -105,8 +108,8 @@ class CalendarSubscriber implements EventSubscriberInterface
                 $booking->getBeginAt(),
                 $booking->getEndAt(),
                 $booking->getColor(),
-                $booking->getRoom()
-            // If the end date is null or not defined, a all day event is created.
+                $booking->getRoom(),
+                $booking->getSupervisor()
             );
 
             /*
