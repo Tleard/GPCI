@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Courses;
 use AppBundle\Entity\Group;
 use AppBundle\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -26,7 +27,7 @@ class CoursesType extends AbstractType
                 'required' => true,
                 'label' => 'booking.user'
             ])
-            ->add('group', EntityType::class, [
+            ->add('groups', EntityType::class, [
                 'class' => Group::class,
                 'choice_label' => 'name',
                 'required' => true,
@@ -43,7 +44,7 @@ class CoursesType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => Group::class
+            'data_class' => Courses::class
         ));
     }
 

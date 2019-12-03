@@ -69,6 +69,7 @@ class BookingController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             //Set color by color on supervisor
             $booking->setColor($booking->getSupervisor()->getColor());
+
             //Todo: Remove color on Supervisor and change to :
             //$booking->setColor($booking->getCourses()->getColor());
 
