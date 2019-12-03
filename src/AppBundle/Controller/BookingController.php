@@ -68,10 +68,10 @@ class BookingController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             //Set color by color on supervisor
-            $booking->setColor($booking->getSupervisor()->getColor());
+            //$booking->setColor($booking->getSupervisor()->getColor());
 
             //Todo: Remove color on Supervisor and change to :
-            //$booking->setColor($booking->getCourses()->getColor());
+            $booking->setColor($booking->getCourse()->getColor());
 
             $em = $this->getDoctrine()->getManager();
 
@@ -81,7 +81,7 @@ class BookingController extends Controller
                 exit();*/
 
                 //Check Date by begin_at
-                $date_begin = $em->getRepository(Booking::class)->findOneBy(["beginAt" => $booking->getBeginAt()]);
+                /*$date_begin = $em->getRepository(Booking::class)->findOneBy(["beginAt" => $booking->getBeginAt()]);
                 $date_begin = $date_begin->getBeginAt();
 
                 //Check Date by end_at
@@ -91,7 +91,7 @@ class BookingController extends Controller
                 if ($date_begin == $booking->getBeginAt() || $date_end == $booking->getEndAt()) {
 
                     throw new InvalidArgumentException("Vous ne pouvez pas se faire superposé des cours pour la même classe");
-                }
+                }*/
 
 
 

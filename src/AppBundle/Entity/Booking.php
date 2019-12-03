@@ -34,8 +34,8 @@ class Booking
     private $title;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Courses")
-     * @ORM\JoinColumn(nullable=true, name="course")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Courses")
+     * @ORM\JoinColumn(nullable=true, name="courses")
      */
     private $course;
 
