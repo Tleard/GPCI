@@ -7,6 +7,7 @@ use AppBundle\Entity\Group;
 use AppBundle\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -32,6 +33,19 @@ class CoursesType extends AbstractType
                 'choice_label' => 'name',
                 'required' => true,
                 'label' => 'booking.group'
+            ])
+            ->add('color', ChoiceType::class, [
+                'required' => true,
+                'choices' => array(
+                    'Rouge' => 'red',
+                    'Bleu' => 'blue',
+                    'Violet' => 'violet',
+                    'Vert' => 'green',
+                    'Orange' => 'orange',
+                    'Bleu Cyan' => 'cyan'
+
+                ),
+                'label' => 'booking.color'
             ])
             ->add('submit', SubmitType::class, array(
                 'attr' => array(

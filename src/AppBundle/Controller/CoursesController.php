@@ -49,7 +49,6 @@ class CoursesController extends Controller
             'action' => $this->generateUrl('courses_create')
         ));
         $form->handleRequest($request);
-        dump($courses);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $coursesManager->createOrUpdate($courses);

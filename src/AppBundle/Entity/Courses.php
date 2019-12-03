@@ -133,7 +133,7 @@ class Courses
     /**
      * @return string
      */
-    public function getColor(): string
+    public function getColor()
     {
         return $this->color;
     }
@@ -141,7 +141,7 @@ class Courses
     /**
      * @param string $color
      */
-    public function setColor(string $color): void
+    public function setColor(string $color)
     {
         $this->color = $color;
     }
