@@ -114,19 +114,6 @@
 
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                         <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-user"></i> Profil : {{ user.username }}</h6>
-                        <div class="dropdown no-arrow">
-                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                            </a>
-                            {# ----  Dropdown Maybe useless ---- #}
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                                <div class="dropdown-header">Dropdown Header:</div>
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </div>
                     </div>
                     <!-- Card Body -->
                     <div class="card-body">
@@ -134,13 +121,10 @@
                             <p>Nom : {{ user.lastName }}</p>
                             <p>Prénom :  {{ user.firstName }} </p>
                             <p>Rôles : {{ user.roles[0] }}</p>
-                            <p>Droit : </p>
                         </div>
                         <div class="col-4">
 
                         </div>
-
-
                         <div class="mt-4 text-center small">
                             Footer
                         </div>
@@ -152,17 +136,11 @@
                 <div class="card shadow mb-4">
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                         <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-user"></i> Groups {#Todo:Add trannslation#}</h6>
-                        <div class="dropdown no-arrow">
-                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                            </a>
-                            {# ----  Dropdown Maybe useless ---- #}
-                        </div>
                     </div>
                     <!-- Card Body -->
                     <div class="card-body">
                         <div class="col-8">
-                            {#Todo: Parse Group For each group Card ? #}
+                            {{ dump() }}
                         </div>
                         <div class="col-4">
 

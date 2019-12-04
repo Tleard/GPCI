@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Booking;
+use AppBundle\Entity\Group;
 use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 use http\Exception\UnexpectedValueException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -80,18 +81,27 @@ class BookingController extends Controller
                 dump($booking->getCourse());
                 exit();*/
 
+                $section = $em->getRepository(Group::class)->findOneBy(["id" => $booking->getCourse()->getGroups()]);
+
                 //Check Date by begin_at
-                /*$date_begin = $em->getRepository(Booking::class)->findOneBy(["beginAt" => $booking->getBeginAt()]);
-                $date_begin = $date_begin->getBeginAt();
 
+                if ($em->getRepository(Booking::class)->findOneBy(["beginAt" => $booking->getBeginAt()])) {
+                    $date_begin = $em->getRepository(Booking::class)->findOneBy(["beginAt" => $booking->getBeginAt()]);
+                    $date_begin = $date_begin->getBeginAt();
+                }
+
+                if ($em->getRepository(Booking::class)->findOneBy(["endAt" => $booking->getEndAt()])) {
+                    $date_end = $em->getRepository(Booking::class)->findOneBy(["endAt" => $booking->getEndAt()]);
+                    $date_end = $date_end->getEndAt();
+                }
                 //Check Date by end_at
-                $date_end = $em->getRepository(Booking::class)->findOneBy(["endAt" => $booking->getEndAt()]);
-                $date_end = $date_end->getEndAt();
 
-                if ($date_begin == $booking->getBeginAt() || $date_end == $booking->getEndAt()) {
+                if (isset($date_begin) || isset($date_end)) {
+                    if ($date_begin == $booking->getBeginAt() || $date_end == $booking->getEndAt()) {
 
-                    throw new InvalidArgumentException("Vous ne pouvez pas se faire superposé des cours pour la même classe");
-                }*/
+                        throw new InvalidArgumentException("Vous ne pouvez pas se faire superposé des cours pour la même classe");
+                    }
+                }
 
 
 
