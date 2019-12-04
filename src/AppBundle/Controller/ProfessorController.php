@@ -34,6 +34,8 @@ class ProfessorController extends Controller
         $booking = new Booking();
         $user = $this->getUser();
         $booking->setSupervisor($user);
+        $booking->setColor('grey');
+        $booking->setRoom(1);
         /** When unavailability is equal to true Supervisor is not Available */
         $booking->setUnavailability(true);
         $form = $this->createForm('AppBundle\Form\SupervisorBookingType', $booking);

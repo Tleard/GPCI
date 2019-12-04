@@ -5,11 +5,11 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Booking;
 use AppBundle\Entity\Group;
 use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
-use http\Exception\UnexpectedValueException;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\Form\Form;
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -55,7 +55,7 @@ class BookingController extends Controller
      * Creates a new booking entity.
      *
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @return RedirectResponse|Response
      *
      * @Route("/new", name="booking_new", methods={"GET", "POST"})
      *
@@ -143,7 +143,7 @@ class BookingController extends Controller
      *
      * @param Request $request
      * @param Booking $booking
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @return RedirectResponse|Response
      *
      * @Route("/{id}/edit", name="booking_edit", methods={"GET", "POST"})
      */
@@ -171,7 +171,7 @@ class BookingController extends Controller
      *
      * @param Request $request
      * @param Booking $booking
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return RedirectResponse
      *
      * @Route("/{id}", name="booking_delete", methods={"DELETE"})
      */
@@ -194,14 +194,13 @@ class BookingController extends Controller
      *
      * @param Booking $booking The booking entity
      *
-     * @return \Symfony\Component\Form\FormInterface
+     * @return FormInterface
      */
     private function createDeleteForm(Booking $booking)
     {
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('booking_delete', array('id' => $booking->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }
