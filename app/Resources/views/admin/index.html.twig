@@ -84,17 +84,21 @@
                 <i class="fas fa-align-left"></i>
                 <span>Masquer la barre de navigation</span>
             </button>
-            <a type="button" id="sidebarCollapse" href="{{ path('admin_create') }}" class="btn btn-info mb-4">
+            <a type="button"  href="{{ path('admin_create') }}" class="btn btn-info mb-4">
                 <i class="fas fa-align-left"></i>
                 <span>Créer un utilisateur</span>
             </a>
-            <a type="button" id="sidebarCollapse" href="{{ path('group_create') }}" class="btn btn-info mb-4">
+            <a type="button"  href="{{ path('group_create') }}" class="btn btn-info mb-4">
                 <i class="fas fa-align-left"></i>
                 <span>Créer un groupe</span>
             </a>
-            <a type="button" id="sidebarCollapse" href="{{ path('courses_create') }}" class="btn btn-info mb-4">
+            <a type="button"  href="{{ path('courses_create') }}" class="btn btn-info mb-4">
                 <i class="fas fa-align-left"></i>
                 <span>Créer une matiére</span>
+            </a>
+            <a type="button"  href="{{ path('holiday_create') }}" class="btn btn-info mb-4">
+                <i class="fas fa-align-left"></i>
+                <span>Créer une période de vacance</span>
             </a>
             {% for flashMessage in app.session.flashbag.get('success') %}
                 {{ flashMessage }}

@@ -19,15 +19,15 @@ use Symfony\Component\Routing\Annotation\Route;
  *
  * @Route("/professor")
  */
-class ProfessorController extends Controller
+class HolidayController extends Controller
 {
     /**
-     * Creates a new booking (With Default unavailability).
+     * Creates a new Holiday period (With Default unavailability).
      *
      * @param Request $request
      * @return RedirectResponse|Response
      *
-     * @Route("/", name="professor_show", methods={"GET", "POST"})
+     * @Route("/", name="holiday_create", methods={"GET", "POST"})
      *
      */
     public function newAction(Request $request)
@@ -36,11 +36,11 @@ class ProfessorController extends Controller
         $booking = new Booking();
         $user = $this->getUser();
         $booking->setSupervisor($user);
-        $booking->setColor('grey');
+        $booking->setTitle("Unavailable");
+        $booking->setColor('lightgrey');
         $booking->setRoom($em->getRepository(Room::class)->findOneBy(["name" => "none"]));
-        /** When unavailability is equal to true Supervisor is not Available */
         $booking->setUnavailability(true);
-        $form = $this->createForm('AppBundle\Form\SupervisorBookingType', $booking);
+        $form = $this->createForm('AppBundle\Form\HolidayBookingType', $booking);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($booking);
@@ -48,24 +48,24 @@ class ProfessorController extends Controller
 
             return $this->redirectToRoute('homepage');
         }
-        return $this->render('new.html.twig', array(
+        return $this->render('holiday/new.html.twig', array(
             'booking' => $booking,
             'form' => $form->createView(),
         ));
     }
 
-/*    /**
-     * Creates a form to delete a Booking entity.
-     *
-     * @param Booking $booking The booking entity
-     *
-     * @return FormInterface
-     *
-    private function createDeleteForm(Booking $booking)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('supervisor_delete', array('id' => $booking->getId())))
-            ->setMethod('DELETE')
-            ->getForm();
-    }*/
+    /*    /**
+         * Creates a form to delete a Booking entity.
+         *
+         * @param Booking $booking The booking entity
+         *
+         * @return FormInterface
+         *
+        private function createDeleteForm(Booking $booking)
+        {
+            return $this->createFormBuilder()
+                ->setAction($this->generateUrl('supervisor_delete', array('id' => $booking->getId())))
+                ->setMethod('DELETE')
+                ->getForm();
+        }*/
 }

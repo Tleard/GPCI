@@ -1,0 +1,143 @@
+{% extends 'base.html.twig' %}
+{% block title %}Ifide - Holiday{% endblock %}
+{% block body %}
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header text-center">
+                <img src="{{asset('images/ifide_Logo.png')}}" alt="Logo Ifide">
+            </div>
+            {#Todo: Add Translation Key#}
+            <ul class="list-unstyled components">
+                {#Todo: Add class Active#}
+                <li>
+                    <a href="{{ path('homepage') }}"><i class="fas fa-home"></i>  Accueil</a>
+                </li>
+                <li>
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-calendar-alt"></i> Planning</a>
+                    <ul class="collapse list-unstyled" id="pageSubmenu">
+                        <li>
+                            <a href="{{ path('booking_calendar') }}"><i class="fa fa-calendar"></i> Voir le calendrier</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('booking_new') }}"><i class="fa fa-calendar-plus"></i> Créer un cours</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="{{path('admin_index')}}"><i class="fas fa-unlock"></i>  Admin</a>
+                </li>
+                <li>
+                    <a href="{{ path('professor_show') }}"><i class="fas fa-user"></i>  Professeur</a>
+                </li>
+            </ul>
+
+            <ul class="list-unstyled CTAs">
+                <li>
+                    <a href="#" class="download">Documentation</a>
+                    {#Todo:Pop-over JS avec différentes documentation en fonction du rôles#}
+                </li>
+                <li>
+                    <a href="#" class="article">Contactez-nous</a>
+                    {#Todo: Pop-over JS avec les différentes façon de contacter (Voir un systéme de message mail)#}
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content">
+            <button type="button" id="sidebarCollapse" class="btn btn-info mb-4">
+                <i class="fas fa-align-left"></i>
+                <span>Toggle Sidebar</span>
+            </button>
+            <br>
+            <h1>Déclarer une période de vacance/jour de fermeture</h1>
+            {{ form_start(form) }}
+            <div class="form-row">
+                <div class="col-md-4">
+                    <div class="input-group-desc">
+                        <div class="input-group-desc">
+                            {{ form_widget(form.beginAt, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <label class="label--desc">{{ form_label(form.beginAt) }}</label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-group-desc">
+                        <div class="input-group-desc">
+                            {{ form_widget(form.endAt, {'attr': {'id': 'form-control'}}) }}
+                        </div>
+                        <label class="label--desc">{{ form_label(form.endAt) }}</label>
+                    </div>
+                </div>
+
+            </div>
+            {#<div class="col-md-4">
+                <div class="input-group-desc">
+                    <div class="input-group-desc">
+                        {{ form_widget(form.group, {'attr': {'class': 'select'}}) }}
+                    </div>
+                    <label class="label--desc">{{ form_label(form.group) }}</label>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="input-group-desc">
+                    <div class="input-group-desc">
+                        {{ form_widget(form.roles, {'attr': {'class': 'select'}}) }}
+                    </div>
+                    <label class="label--desc">{{ form_label(form.roles) }}</label>
+                </div>
+            </div>#}
+            {{ form_widget(form) }}
+            <input type="submit" value="Create" />
+            {{ form_end(form) }}
+
+
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- JS Bootstrap -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{asset('css/bootstrap/css/bootstrap.css')}}">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="{{asset('css/component.css')}}">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.1.0/main.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.1.0/main.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@4.1.0/main.min.css">
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.1.0/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@4.1.0/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.1.0/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@4.1.0/main.min.js"></script>
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker1').datetimepicker();
+        });
+    </script>
+{% endblock %}

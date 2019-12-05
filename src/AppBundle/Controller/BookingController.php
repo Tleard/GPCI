@@ -74,17 +74,11 @@ class BookingController extends Controller
             //Set color by color on supervisor
             //$booking->setColor($booking->getSupervisor()->getColor());
 
-            //Todo: Remove color on Supervisor and change to :
             $booking->setColor($booking->getCourse()->getColor());
             $booking->setSupervisor($booking->getCourse()->getSupervisor());
             $booking->setTitle($booking->getCourse()->getName());
 
             $em = $this->getDoctrine()->getManager();
-
-                /*$group = $em->getRepository(Booking::class)->findBy(["course" => $booking->getCourse()]);
-                $em->getRepository(Booking::class)->findBy(["course" => $booking->getCourse()]);
-                dump($booking->getCourse());
-                exit();*/
 
                 $section = $em->getRepository(Group::class)->findOneBy(["id" => $booking->getCourse()->getGroups()]);
 
