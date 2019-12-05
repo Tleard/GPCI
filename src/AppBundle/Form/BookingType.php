@@ -25,11 +25,11 @@ class BookingType extends AbstractType
         $builder
             ->add('beginAt', DateTimeType::class, [
                 'required' => true,
-                'label' => 'booking.begin_at',
+                'label' => 'Heure de début',
             ])
             ->add('endAt', DateTimeType::class, [
                 'required' => true,
-                'label' => 'booking.end_at'
+                'label' => 'Heure de fin'
             ])
 /*            ->add('title', null, [
                 'required' => true,
@@ -39,13 +39,13 @@ class BookingType extends AbstractType
                 'class' => Room::class,
                 'choice_label' => 'name',
                 'required' => true,
-                'label' => 'booking.room'
+                'label' => 'Salle de cours'
             ])
             ->add('course', EntityType::class, [
                 'class' => Courses::class,
                 'choice_label' => 'name',
                 'required' => true,
-                'label' => 'booking.courses'
+                'label' => 'Matière'
             ]);
 /*            ->add('supervisor', EntityType::class, [
                 'class' => User::class,

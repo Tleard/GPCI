@@ -6,24 +6,24 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>Ifide - Calendrier</title>
+        <title>Ifide - Admin</title>
 
         <!-- Bootstrap CSS CDN -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <!-- JS Bootstrap -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="{{asset('css/bootstrap/css/bootstrap.css')}}">
-        <!-- Our Custom CSS -->
-        <link rel="stylesheet" href="{{asset('css/component.css')}}">
         {% block stylesheets %}
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.1.0/main.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.1.0/main.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@4.1.0/main.min.css">
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="{{asset('css/bootstrap/css/bootstrap.css')}}">
+        <link rel="stylesheet" href="{{asset('css/component.css')}}">
         {% endblock %}
 
         {% block javascripts %}
+            <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+            <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
             <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.1.0/main.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@4.1.0/main.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.1.0/main.min.js"></script>
@@ -33,12 +33,8 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css"></script>
             <script src="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"></script>
         {% endblock %}
-
-        <!-- Font Awesome JS -->
-        <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-        <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-    </head>
     <body>
+        <!-- Font Awesome JS -->
     <div class="wrapper">
         <!-- Sidebar  -->
         <nav id="sidebar">
@@ -49,21 +45,24 @@
             <ul class="list-unstyled components">
                 {#Todo: Add class Active#}
                 <li>
-                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-calendar-alt"></i> Planning</a>
-                <ul class="collapse list-unstyled" id="pageSubmenu">
-                    <li>
-                        <a href="{{ path('booking_calendar') }}"><i class="fa fa-calendar"></i> Voir le calendrier</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('booking_new') }}"><i class="fa fa-calendar-plus"></i> Créer un cours</a>
-                    </li>
-                </ul>
-            </li>
+                    <a href="{{ path('homepage') }}"><i class="fas fa-home"></i>  Accueil</a>
+                </li>
+                <li>
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-calendar-alt"></i> Planning</a>
+                    <ul class="collapse list-unstyled" id="pageSubmenu">
+                        <li>
+                            <a href="{{ path('booking_calendar') }}"><i class="fa fa-calendar"></i> Voir le calendrier</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('booking_new') }}"><i class="fa fa-calendar-plus"></i> Créer un cours</a>
+                        </li>
+                    </ul>
+                </li>
                 <li>
                     <a href="{{path('admin_index')}}"><i class="fas fa-unlock"></i>  Admin</a>
                 </li>
                 <li>
-                    <a href="{{ path('user_index') }}"><i class="fas fa-user"></i>  User</a>
+                    <a href="{{ path('professor_show') }}"><i class="fas fa-user"></i>  Professeur</a>
                 </li>
             </ul>
 

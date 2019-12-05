@@ -26,13 +26,13 @@ class CoursesType extends AbstractType
                 'class' => User::class,
                 'choice_label' => 'lastName',
                 'required' => true,
-                'label' => 'booking.user'
+                'label' => 'Professeur'
             ])
             ->add('groups', EntityType::class, [
                 'class' => Group::class,
                 'choice_label' => 'name',
                 'required' => true,
-                'label' => 'booking.group'
+                'label' => 'Groupe'
             ])
             ->add('color', ChoiceType::class, [
                 'required' => true,
@@ -45,7 +45,7 @@ class CoursesType extends AbstractType
                     'Bleu Cyan' => 'cyan'
 
                 ),
-                'label' => 'booking.color'
+                'label' => 'Couleur'
             ])
             ->add('submit', SubmitType::class, array(
                 'attr' => array(
