@@ -52,9 +52,7 @@
             </button>
             <br>
             <h1>Créer un cours</h1>
-
             {{ form_start(form) }}
-            {{ dump() }}
             <div class="form-row">
                 <div class="col-md-4">
                     <div class="input-group-desc">
@@ -72,6 +70,7 @@
                         <label class="label--desc">{{ form_label(form.endAt) }}</label>
                     </div>
                 </div>
+
             </div>
                 {#<div class="col-md-4">
                     <div class="input-group-desc">
@@ -89,7 +88,6 @@
                         <label class="label--desc">{{ form_label(form.roles) }}</label>
                     </div>
                 </div>#}
-            </div>
             {{ form_widget(form) }}
             <input type="submit" value="Create" />
             {{ form_end(form) }}
