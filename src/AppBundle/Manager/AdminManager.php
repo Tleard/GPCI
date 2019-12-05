@@ -47,6 +47,15 @@ class AdminManager
     }
 
     /**
+     * @param User $user
+     */
+    public function delete(User $user)
+    {
+        $this->entityManager->remove($user);
+        $this->entityManager->flush();
+    }
+
+    /**
      * @return Collection|User[]
      */
     public function findAll()
