@@ -31,10 +31,10 @@ class BookingType extends AbstractType
                 'required' => true,
                 'label' => 'booking.end_at'
             ])
-            ->add('title', null, [
+/*            ->add('title', null, [
                 'required' => true,
                 'label' => 'booking.title'
-            ])
+            ])*/
             ->add('room', EntityType::class, [
                 'class' => Room::class,
                 'choice_label' => 'name',
@@ -46,13 +46,13 @@ class BookingType extends AbstractType
                 'choice_label' => 'name',
                 'required' => true,
                 'label' => 'booking.courses'
-            ])
-            ->add('supervisor', EntityType::class, [
+            ]);
+/*            ->add('supervisor', EntityType::class, [
                 'class' => User::class,
                 'choice_label' => 'lastName',
                 'required' => true,
                 'label' => 'booking.user'
-            ]);
+            ]);*/
     }
     /**
      * {@inheritdoc}

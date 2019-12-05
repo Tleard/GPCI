@@ -46,13 +46,16 @@ class BookingController extends Controller
 
         $bookings = $em->getRepository('AppBundle:Booking')->findAll();
 
+        //$this->pdfAction();
+
         return $this->render('booking/calendar.html.twig', array(
             'bookings' => $bookings,
         ));
     }
 
     /**
-     * Creates a new booking entity.
+     * Creates a new booking entity.vendor
+
      *
      * @param Request $request
      * @return RedirectResponse|Response
@@ -73,6 +76,8 @@ class BookingController extends Controller
 
             //Todo: Remove color on Supervisor and change to :
             $booking->setColor($booking->getCourse()->getColor());
+            $booking->setSupervisor($booking->getCourse()->getSupervisor());
+            $booking->setTitle($booking->getCourse()->getName());
 
             $em = $this->getDoctrine()->getManager();
 
@@ -203,4 +208,28 @@ class BookingController extends Controller
             ->setMethod('DELETE')
             ->getForm();
     }
+
+    /**
+     *
+     * @Route("/pdf", name="booking_delete")
+     *
+     */
+    public function pdfAction()
+    {
+        {
+            $html = $this->renderView('booking/calendar.html.twig');
+
+            $filename = sprintf('test-%s.pdf', date('Y-m-d'));
+
+            return new Response(
+                $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
+                200,
+                [
+                    'Content-Type'        => 'application/pdf',
+                    'Content-Disposition' => sprintf('attachment; filename="%s"', $filename),
+                ]
+            );
+        }
+    }
+
 }
