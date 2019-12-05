@@ -54,8 +54,7 @@
 
             <ul class="list-unstyled CTAs">
                 <li>
-                    <a href="#" class="download">Documentation</a>
-                    {#Todo:Pop-over JS avec différentes documentation en fonction du rôles#}
+                    <a {% if is_granted("ROLE_ADMIN") %}href="{{ asset('pdf/doc_admin.pdf') }}"{% else %} href="{{ asset('pdf/doc_prof.pdf') }}"  {% endif %} target="_blank" class="download">Documentation</a>
                 </li>
                 <li>
                     <a href="#" class="article">Contactez-nous</a>
