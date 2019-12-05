@@ -117,7 +117,7 @@ class BookingController extends Controller
             return $this->redirectToRoute('booking_show', array('id' => $booking->getId()));
         }
 
-        return $this->render('booking/new.html.twig', array(
+        return $this->render('booking/new_user.html.twig', array(
             'booking' => $booking,
             'form' => $form->createView(),
         ));
