@@ -47,7 +47,7 @@ class UserType extends AbstractType
                 'multiple' => true
             ))
             ->add('submit', SubmitType::class, array(
-                'label' => "Créer",
+                'label' => "Envoyer",
                 'attr' => array(
                     'class' => 'btn btn-success'
                 )
