@@ -16,7 +16,9 @@ class GroupType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name', TextType::class)
+        $builder->add('name', TextType::class, array(
+            "label" => "Nom du groupe"
+        ))
             ->add('submit', SubmitType::class, array(
                 'attr' => array(
                     'class' => 'btn btn-success'

@@ -1,16 +1,19 @@
 {% extends 'base.html.twig' %}
-
-    {% block title %}Ifide Accueil{% endblock %}
-    {% block stylesheets %}
+ {% block stylesheets %}
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.1.0/main.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="{{asset('css/bootstrap/css/bootstrap.css')}}">
-        <link rel="stylesheet" href="{{asset('css/component.css')}}">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.1.0/main.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@4.1.0/main.min.css">
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <!-- JS Bootstrap -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="{{asset('css/bootstrap/css/bootstrap.css')}}">
+        <!-- Our Custom CSS -->
+        <link rel="stylesheet" href="{{asset('css/component.css')}}">
     {% endblock %}
+
     {% block javascripts %}
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.1.0/main.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@4.1.0/main.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.1.0/main.min.js"></script>
@@ -18,9 +21,9 @@
         <!-- Font Awesome JS -->
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-
     {% endblock %}
-    {% block body %}
+
+{% block body %}
     <div class="wrapper">
         <!-- Sidebar  -->
         <nav id="sidebar">
@@ -48,7 +51,7 @@
                     <a href="{{path('admin_index')}}"><i class="fas fa-unlock"></i>  Admin</a>
                 </li>
                 <li>
-                    <a href="{{ path('professor_show') }}"><i class="fas fa-user"></i>  Professeur</a>
+                    <a href="#"><i class="fas fa-user"></i>  User</a>
                 </li>
             </ul>
 
@@ -63,82 +66,66 @@
                 </li>
             </ul>
         </nav>
-
         <!-- Page Content  -->
         <div id="content">
             <button type="button" id="sidebarCollapse" class="btn btn-info mb-4">
                 <i class="fas fa-align-left"></i>
-                <span>Toggle Sidebar</span>
+                <span>Masquer la barre de navigation</span>
             </button>
-
             <div class="row">
-                {# --- CARD PRESENTATION --- #}
-                <div class="col-sm-12">
-                    <div class="card shadow mb-4">
-                        <!-- Card Body -->
-                        <div class="card-body">
-                            <div class="col-8">
-                                <p class="mb-0">Insérer un message bienvenue</p>
-                            </div>
-                            <div class="col-4">
-
-                            </div>
-
-
-                            <div class="mt-4 text-center small">
-                                Footer
-                            </div>
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            {% if user.id != null %}
+                                <h2><i class="fa fa-edit"></i>Édition d'utilisateur</h2>
+                            {% else %}
+                                <h2><i class="fa fa-edit"></i>Création d'utilisateur</h2>
+                            {% endif %}
                         </div>
+                        {#<div class="card-body">
+                            {{ form_start(form) }}
+                            <div class="form-row">
+                                <div class="col-md-4">
+                                    <div class="input-group-desc">
+                                        <div class="input-group-desc">
+                                            {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                        <label class="label--desc">{{ form_label(form.name) }}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-group-desc">
+                                        <div class="input-group-desc">
+                                            {{ form_widget(form.supervisor, {'attr': {'class': 'select'}}) }}
+                                        </div>
+                                        <label class="label--desc">{{ form_label(form.supervisor) }}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-group-desc">
+                                        <div class="input-group-desc">
+                                            {{ form_widget(form.roles, {'attr': {'class': 'select'}}) }}
+                                        </div>
+                                        <label class="label--desc">{{ form_label(form.roles) }}</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {% if user.id != null %}
+                                <div>
+                                    <a type="button" id="sidebarCollapse" href="{{ path('admin_delete', {'user': user.id}) }}" class="btn btn-info mb-4">
+                                        <span>Supprimer</span>
+                                    </a>
+                                </div>
+                            {% endif %}
+                        </div>#}
+                        {{ form_end(form) }}
                     </div>
-                </div>
-
-            </div>
-            <div class="row">
-
-                {# --- CARD PROFIL --- #}
-                <div class="col-lg-6 col-sm-12">
-                    <div class="card shadow mb-4">
-
-                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-user"></i> Profil : {{ user.username }}</h6>
-                        </div>
-                        <!-- Card Body -->
-                        <div class="card-body">
-                            <div class="col-8">
-                                <p>Nom : {{ user.lastName }}</p>
-                                <p>Prénom :  {{ user.firstName }} </p>
-                                <p>Rôles : {{ user.roles[0] }}</p>
-                            </div>
-                            <div class="col-4">
-
-                            </div>
-                            <div class="mt-4 text-center small">
-                                Footer
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {# --- CARD GROUP --- #}
-                <div class="col-lg-6 col-sm-12">
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-user"></i> Groups {#Todo:Add trannslation#}</h6>
-                        </div>
-                        <!-- Card Body -->
-                        <div class="card-body">
-                            <div class="col-8">
-                                {{ dump() }}
-                            </div>
-                            <div class="col-4">
-
-                            </div>
-
-
-                            <div class="mt-4 text-center small">
-                                Footer
-                            </div>
-                        </div>
-                    </div>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_index') }}">Retour à la liste des utilisateurs</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -153,10 +140,10 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
     <script type="text/javascript">
-    $(document).ready(function () {
-        $('#sidebarCollapse').on('click', function () {
-            $('#sidebar').toggleClass('active');
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
         });
-    });
     </script>
-    {% endblock %}
+{% endblock %}

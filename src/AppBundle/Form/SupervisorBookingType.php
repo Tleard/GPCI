@@ -24,11 +24,11 @@ class SupervisorBookingType extends AbstractType
         $builder
             ->add('beginAt', DateType::class, [
                 'required' => true,
-                'label' => 'booking.begin_at',
+                'label' => "Début de l'indisponibilité",
             ])
             ->add('endAt', DateType::class, [
                 'required' => true,
-                'label' => 'booking.end_at'
+                'label' => "Fin de l'indisponibilité"
             ]);
             /*->add('title', null, [
                 'required' => true,
@@ -64,6 +64,4 @@ class SupervisorBookingType extends AbstractType
     {
         return 'appbundle_booking';
     }
-
-
 }
