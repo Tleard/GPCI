@@ -82,11 +82,6 @@
                             <div class="col-4">
 
                             </div>
-
-
-                            <div class="mt-4 text-center small">
-                                Footer
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -99,7 +94,7 @@
                     <div class="card shadow mb-4">
 
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-user"></i> Profil : {{ user.username }}</h6>
+                            <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-user"></i> Profil :</h6>
                         </div>
                         <!-- Card Body -->
                         <div class="card-body">
@@ -111,9 +106,6 @@
                             <div class="col-4">
 
                             </div>
-                            <div class="mt-4 text-center small">
-                                Footer
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -121,7 +113,7 @@
                 <div class="col-lg-6 col-sm-12">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-user"></i> Groups {#Todo:Add trannslation#}</h6>
+                            <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-users"></i> Groupes</h6>
                         </div>
                         <!-- Card Body -->
                         <div class="card-body">
@@ -130,10 +122,25 @@
                             <div class="col-4">
 
                             </div>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="col-sm-12">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3 d-flex flex-row align-items-center text-center justify-content-between">
+                            <h6 class="m-0 font-weight-bold text-primary text-center"><i class="fas fa-lock"></i> Admin</h6>
+                        </div>
+                        <!-- Card Body -->
+                        <div class="card-body">
+                            <div class="col-8">
+                                <p><a href="{{ path('admin_create') }}"><button class="btn btn-info"><i class="fas fa-user"></i> Créer un utilisateur</button></p></a>
+                                <p><a href="{{ path('group_create') }}"><button class="btn btn-info"><i class="fas fa-users"></i> Créer un groupe</button></a></p>
+                                <p><a href="{{ path('courses_create') }}"><button class="btn btn-info"><i class="fas fa-chalkboard"></i> Créer une matiére</button></a></p>
+                                <p><a href="{{ path('holiday_create') }}"><button class="btn btn-info"><i class="fas fa-times-circle"></i> Créer une période de vacance</button></a></p>
+                            </div>
+                            <div class="col-4">
 
-                            <div class="mt-4 text-center small">
-                                Footer
                             </div>
                         </div>
                     </div>
