@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
+use AppBundle\Form\RegistrationType;
 use AppBundle\Form\UserType;
 use AppBundle\Manager\AdminManager;
 use AppBundle\Manager\CoursesManager;
@@ -35,7 +36,6 @@ class AdminController extends Controller
         $roles = $this->getUser()->getRoles();
 
         if (!in_array("ROLE_ADMIN", $roles)) {
-            /*Todo: Translation*/
              $this->addFlash("This user is does not have the right to acces this page.");
              return $this->redirectToRoute($this->indexAction());
         }
@@ -69,11 +69,12 @@ class AdminController extends Controller
         }
 
         $user = new User();
-        $form = $this->createForm(UserType::class, $user, array(
+        $user->setEnabled(true);
+        $form = $this->createForm(RegistrationType::class, $user, array(
             'action' => $this->generateUrl('admin_create')
         ));
+
         $form->handleRequest($request);
-        dump($user);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $adminManager->createOrUpdate($user);
@@ -111,6 +112,7 @@ class AdminController extends Controller
             ))
         ));;
         $form->handleRequest($request);
+        dump($user);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $adminManager->createOrUpdate($user);

@@ -20,10 +20,11 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.1.0/main.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@4.1.0/main.min.css">
         <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
-
+        <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@3/dark.css" rel="stylesheet">
     {% endblock %}
 
     {% block javascripts %}
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@9/dist/sweetalert2.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.1.0/main.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@4.1.0/main.min.js"></script>
@@ -101,17 +102,17 @@
                             <div class="col-md-4">
                                 <div class="input-group-desc">
                                     <div class="input-group-desc">
-                                        {{ form_widget(form.firstName, {'attr': {'class': 'form-control'}}) }}
+                                        {{ form_widget(form.first_name, {'attr': {'class': 'form-control'}}) }}
                                     </div>
-                                    <label class="label--desc">{{ form_label(form.firstName) }}</label>
+                                    <label class="label--desc">{{ form_label(form.first_name) }}</label>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="input-group-desc">
                                     <div class="input-group-desc">
-                                        {{ form_widget(form.lastName, {'attr': {'class': 'form-control'}}) }}
+                                        {{ form_widget(form.last_name, {'attr': {'class': 'form-control'}}) }}
                                     </div>
-                                    <label class="label--desc">{{ form_label(form.lastName) }}</label>
+                                    <label class="label--desc">{{ form_label(form.last_name) }}</label>
                                 </div>
                             </div>
                             <div class="col-md-4">
