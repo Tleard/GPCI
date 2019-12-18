@@ -43,7 +43,10 @@ class BookingType extends AbstractType
             ])
             ->add('course', EntityType::class, [
                 'class' => Courses::class,
-                'choice_label' => 'name',
+                'choice_label' => function ($courses) {
+                    return $courses->getName() . " -" . $courses->getSupervisor()->getFirstName(). " " . $courses->getSupervisor()->getLastName() .
+                        " - " . $courses->getGroups()->getName() ;
+                },
                 'required' => true,
                 'label' => 'Matière'
             ]);
