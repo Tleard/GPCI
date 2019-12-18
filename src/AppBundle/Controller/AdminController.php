@@ -36,8 +36,8 @@ class AdminController extends Controller
         $roles = $this->getUser()->getRoles();
 
         if (!in_array("ROLE_ADMIN", $roles)) {
-             $this->addFlash("This user is does not have the right to acces this page.");
-             return $this->redirectToRoute($this->indexAction());
+             $this->addFlash(500, "This user is does not have the right to acces this page.");
+             return $this->redirectToRoute('homepage');
         }
 
         $users = $adminManager->findAll();
@@ -64,8 +64,8 @@ class AdminController extends Controller
 
         if (!in_array("ROLE_ADMIN", $roles)) {
             /*Todo: Translation*/
-            $this->addFlash("This user is does not have the right to acces this page.");
-            return $this->redirectToRoute($this->indexAction());
+            $this->addFlash(500, "This user is does not have the right to acces this page.");
+            return $this->redirectToRoute('homepage');
         }
 
         $user = new User();
@@ -102,11 +102,11 @@ class AdminController extends Controller
 
         if (!in_array("ROLE_ADMIN", $roles)) {
             /*Todo: Translation*/
-            $this->addFlash("This user is does not have the right to acces this page.");
-            return $this->redirectToRoute($this->indexAction());
+            $this->addFlash(500, "This user is does not have the right to acces this page.");
+            return $this->redirectToRoute('homepage');
         }
 
-        $form = $this->createForm(UserType::class, $user, array(
+        $form = $this->createForm(RegistrationType::class, $user, array(
             'action' => $this->generateUrl('admin_edit', array(
                 'user' => $user->getId()
             ))
@@ -140,7 +140,7 @@ class AdminController extends Controller
         if (!in_array("ROLE_ADMIN", $roles)) {
             /*Todo: Translation*/
             $this->addFlash("This user is does not have the right to acces this page.");
-            return $this->redirectToRoute($this->indexAction());
+            return $this->redirectToRoute('homepage');
         }
 
         $adminManager->delete($user);
